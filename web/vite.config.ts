@@ -3,13 +3,17 @@ import react from '@vitejs/plugin-react'
 import obfuscatorPlugin from 'rollup-plugin-obfuscator'
 
 const isProd = process.env.NODE_ENV === 'production'
+const obfuscate =
+  isProd &&
+  process.env.VITE_OBFUSCATE === '1' &&
+  process.env.VITE_SKIP_OBF !== '1'
 
 // https://vite.dev/config/
 export default defineConfig({
   base: process.env.VITE_BASE ?? '/',
   plugins: [
     react(),
-    isProd &&
+    obfuscate &&
       obfuscatorPlugin({
         // Only obfuscate app chunks; leave vendor bundles untouched (Privy/Wagmi stability).
         global: false,
@@ -50,11 +54,10 @@ export default defineConfig({
     chunkSizeWarningLimit: 900,
     rollupOptions: {
       output: {
+        // Avoid circular vendor/web3 chunks that can blank the page on GitHub Pages.
         manualChunks(id) {
-          if (!id.includes('node_modules')) return undefined
           if (id.includes('@privy-io')) return 'privy'
-          if (id.includes('wagmi') || id.includes('viem') || id.includes('@tanstack')) return 'web3'
-          return 'vendor'
+          return undefined
         },
         chunkFileNames: 'assets/c-[hash].js',
         entryFileNames: 'assets/e-[hash].js',
