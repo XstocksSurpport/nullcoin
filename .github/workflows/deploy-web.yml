@@ -29,7 +29,7 @@ jobs:
           cache-dependency-path: web/package-lock.json
       - name: Install and build
         env:
-          VITE_BASE: /nullcoin/
+          VITE_BASE: /
         run: |
           cd web
           npm ci --legacy-peer-deps
