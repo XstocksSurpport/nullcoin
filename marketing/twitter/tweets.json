@@ -1,0 +1,42 @@
+[
+  {
+    "id": "launch-1",
+    "text": "null / llnu is live on Ethereum mainnet.\n\nTwo tokens. One protocol.\n$null creates. $llnu destroys.\n\nPresale open — 0.002 ETH per share → 25k $null + 50k $llnu.\n4 ETH cap. Uniswap v4 pool auto-seeds at cap."
+  },
+  {
+    "id": "mechanic-1",
+    "text": "Most airdrops reward you.\n\nnull / llnu treats incoming $llnu as a weapon.\n\nAfter the pool goes live, wallet-to-wallet $llnu can burn an unprotected holder's $null — half gone forever, half to the sender.\n\nShield cards are the only protection."
+  },
+  {
+    "id": "mint-1",
+    "text": "Mint on mainnet:\n• 0.002 ETH / share\n• 25,000 $null + 50,000 $llnu per share\n• 0.1 ETH max per wallet\n• 4 ETH total raise → LP seeds automatically\n\nNo staking. No fake yield. Just the rules."
+  },
+  {
+    "id": "tokens-1",
+    "text": "$null ↔ ETH on Uniswap v4 after launch.\n\n$llnu? Wallet transfers only. Every DEX path blocked.\n\nYou can't farm $llnu on a CEX or pool — it's ammunition, not a second memecoin."
+  },
+  {
+    "id": "shield-1",
+    "text": "Shield cards = timed immunity from incoming $llnu strikes.\n\nBurn fixed $null for 30 / 90 / 365 days:\n• 60k / 160k / 460k $null\n\nPermanent burn. No market price games. Renew before expiry to extend."
+  },
+  {
+    "id": "strike-1",
+    "text": "Pool live → strikes activate.\n\nSend $llnu to another wallet:\nIf they hold $null with no Shield, part of their $null gets burned and you get rewarded.\n\nHold $null in LP? Wallet balance = 0 → no strike. Depth helps everyone."
+  },
+  {
+    "id": "verified-1",
+    "text": "Contracts verified on Etherscan (mainnet v2):\n\nNullToken, LlnuToken, NullProtocolHook — source open.\n\nDual-token ERC-20 stack + Uniswap v4 hook.\n\nDYOR. Verify addresses before you sign."
+  },
+  {
+    "id": "cta-1",
+    "text": "Airdrops are weapons, not rewards.\n\nJoin the presale. Read the docs. Buy Shield if you plan to hold $null naked in a wallet.\n\nEthereum mainnet. Mechanism over marketing fluff."
+  },
+  {
+    "id": "zh-1",
+    "text": "null / llnu 以太坊主网 v2 已上线。\n\n双代币协议：$null 可交易，$llnu 仅钱包转账。\n\n流動池上线后，未受防护的 $null 持有者可能被 $llnu 打击。\n\n防護卡是唯一链上保护。0.002 ETH/份，募集上限 4 ETH。"
+  },
+  {
+    "id": "thread-hook-1",
+    "text": "Why Uniswap v4 hook?\n\nSo $llnu never enters a pool. So strikes only happen on intentional wallet transfers. So $null gets a real ETH pair when the raise hits 4 ETH.\n\nPolicy enforced on-chain, not in a PDF."
+  }
+]

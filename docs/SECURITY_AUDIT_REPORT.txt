@@ -1,0 +1,381 @@
+================================================================================
+NULL PROTOCOL — 安全推演 / 对抗测试 / 测试网验证 完整报告
+================================================================================
+生成日期: 2026-06-15
+审计范围: 本地 v2 合约 (src/*.sol) + Foundry 全量测试 + Sepolia Fork
+报告版本: v2-mechanism-audit-2026-06-15
+
+================================================================================
+一、执行摘要
+================================================================================
+
+本次对 NULL Protocol 本地 v2 机制进行了全链路推演与对抗测试:
+
+  • Foundry 本地测试: 85/85 通过 (含新增 SecurityAdversarial 13 项)
+  • Sepolia Fork 测试: 8/8 通过 (针对链上 **v1 遗留部署**, 非本地 v2)
+  • 重大机制绕过 (保护卡数量/时效、strike 门禁、mint cap): **未发现可利用绕过**
+  • 已确认的设计层风险: Admin withdrawEth / endMint 人为干预 LP 与公募
+
+结论: 核心 strike / Shield / EOA-only llnu / pre-seed 门禁在本地 v2 实现正确;
+      主网/Sepolia 仍为旧版参数, 上线 v2 需全栈重部署 + 更新前端/脚本/文档。
+
+================================================================================
+二、项目走向推演
+================================================================================
+
+2.1 当前状态 (2026-06)
+
+  层级          | 状态
+  -------------|----------------------------------------------------------
+  本地合约 v2   | 已实现: 25k null/share, 2× llnu, 50/50 strike bounty,
+                | 仅 Shield 卡 (无 stake), liquiditySeeded 门禁
+  Sepolia 链上  | v1 参数: 20k null/share, 1:1 llnu, 120k/320k/920k 卡,
+                | 旧 strike 逻辑 (测试显示 100% null 销毁非 50/50)
+  主网          | 文档记载 v1 地址, 未切换 v2
+  前端 web      | 部分同步 v2 (en/contracts), 8 个非英语 locale 仍含 stake 文案
+  文档          | MECHANISM_V2.md 已更新; SECURITY.md / TEST_PLAN 部分过时
+
+2.2 典型上线路径 (推荐)
+
+  Phase 0 — 内测 (当前)
+    • forge test 全绿 + SecurityAdversarial 对抗套件
+    • 本地 anvil / fork 回归
+
+  Phase 1 — Sepolia v2 部署
+    • CREATE2 hook 挖矿 (beforeInitialize/add/remove/swap/donate flags)
+    • Deploy.s.sol 广播 → 记录新地址
+    • 更新 SepoliaFork.t.sol / TestnetFullVerify.s.sol / web contracts.ts
+    • 手工或脚本跑满 4 ETH cap → 验证 auto LP seed + liquiditySeeded
+
+  Phase 2 — 公开测试网验证 (1–2 周)
+    • 多 EOA 参与 mint、P2P llnu strike、Shield 购卡/续期
+    • 验证 v4 null 池可 swap, llnu 池被拒绝
+    • 监控 Admin 密钥是否被滥用 (withdrawEth)
+
+  Phase 3 — 主网
+    • 冻结 Admin 权限或 timelock/multisig
+    • 考虑移除 withdrawEth 或限制为 seed 后不可提
+    • 第三方 formal audit (当前未做)
+
+2.3 经济/博弈走向
+
+  • Mint 满额 (4 ETH) → 50M null 用户 + 50M null LP + 100M llnu 全部 mint 出
+  • Strike 激活后: llnu P2P 成为主要对抗向量; null DEX 中性
+  • Shield 卡消耗 null (burn to dead) → 通缩 + 保护溢价
+  • 50/50 bounty 激励 striker, 但 victim null 上限 cap strike 规模
+  • 无 stake 后: 保护完全依赖购卡, 大户需持续 burn null 换免疫
+
+2.4 长期风险轴
+
+  • Admin 信任假设 (withdrawEth / endMint)
+  • EOA-only 排斥智能钱包 / AA 账户 (产品选择, 非 bug)
+  • CEX 若上线 llnu 无法链上禁止 (仅 EOA 转账规则)
+  • Hook owner recoverMisdirectedTokens (误转代币可收回, 非用户余额)
+
+================================================================================
+三、v2 机制要点 (审计基准)
+================================================================================
+
+  参数:
+    MINT_PRICE_ETH      = 0.002 ETH / share
+    TOKENS_PER_SHARE    = 25,000 null
+    LLNU_PER_NULL       = 2  → 50,000 llnu / share
+    MAX_ETH_PER_ADDRESS = 0.1 ETH
+    MINT_TARGET_ETH     = 4 ETH (2,000 shares)
+    MAX_SUPPLY          = 100M (null & llnu 各 100M cap)
+
+  Strike (liquiditySeeded == true 后):
+    strike = min(T, victimNull)
+    victim null: strike/2 → 0xdead, 余 → striker
+    striker llnu: strike 销毁, T-strike → victim
+
+  Shield (唯一保护):
+    月卡 60k null / 30d | 季卡 160k / 90d | 年卡 460k / 365d
+    续期: expiry = max(now, oldExpiry) + duration
+
+  llnu 转账门禁:
+    ↔ PoolManager → revert "No liquidity"
+    ↔ 任意合约   → revert "P2P only"
+    ↔ Hook       → peace zone (无 strike)
+    EOA ↔ EOA    → processLlnuStrike
+
+================================================================================
+四、测试执行结果
+================================================================================
+
+4.1 本地 Foundry (2026-06-15)
+
+  命令: forge test --summary
+
+  测试套件                  | 通过 | 失败
+  -------------------------|------|------
+  AdminSecurityTest         |  6   |  0
+  AttackTest                |  8   |  0
+  DexExemptionTest          |  4   |  0
+  FlashLoanTest             |  3   |  0
+  FuzzTest                  |  3   |  0
+  LlnuStrikeTest            | 16   |  0
+  NullHookTest              |  7   |  0
+  NullMintTest              | 12   |  0
+  SecurityAdversarialTest   | 13   |  0
+  SepoliaForkTest           |  8   |  0
+  V4HookTest                |  5   |  0
+  -------------------------|------|------
+  合计                      | 85   |  0
+
+4.2 Sepolia Fork (链上 v1 部署)
+
+  命令: forge test --match-contract SepoliaForkTest \
+        --fork-url https://ethereum-sepolia-rpc.publicnode.com
+
+  结果: 8/8 通过
+
+  链上地址 (Sepolia v1):
+    NullMint     0x754bc98046a512A51718DAcF2c9fb23049ea7d82
+    Hook         0x04f56d6ae915C6A81E695cb0d6FAeefe72546aa0
+    NullToken    0x93861d3f37CF8679b420dfB3458A665836152127
+    LlnuToken    0x708873e98469Af2Fcc35aa1e27d28C4387bf3a5a
+    PoolManager  0xE03A1074c86CFeDd5C142C4F04F1a1536e203543
+
+  ⚠ 重要: Fork 测试验证的是 **Sepolia 已部署 v1**, 不是本地 v2 字节码。
+    • TOKENS_PER_SHARE = 20,000 (非 25,000)
+    • CARD_MONTH = 120,000 (非 60,000)
+    • Strike 测试期望 victim null 减少量 = 全额 strike (非 v2 的 50/50 split)
+    • test_sepolia_stakeAndCardProtection 仍测 stake/legacy 卡逻辑
+
+4.3 测试网 live broadcast
+
+  script/TestnetFullVerify.s.sol 存在但 **参数过时** (期望 CARD_MONTH=120k, v1 strike)。
+  本地 v2 **尚未部署到 Sepolia**, 故未执行链上 broadcast E2E。
+  v2 上线后需: 更新脚本常量 → 设置 env 地址/私钥 → forge script --broadcast
+
+================================================================================
+五、对抗攻击模拟矩阵
+================================================================================
+
+以下按攻击面分类, 均已在测试中覆盖或在本报告分析。
+
+5.1 Strike / 保护绕过
+
+  攻击向量                              | 结果        | 测试
+  -------------------------------------|-------------|---------------------------
+  无 Shield 卡直接 llnu strike          | 成功打击    | SecurityAdversarial
+  伪造 hook.processLlnuStrike 调用      | REVERT      | bypass_fakeHookCall
+  直接 nullToken.executeStrike          | REVERT      | bypass_directExecuteStrike
+  保护卡生效期间 strike                 | null 不变   | test_cardProtection_blocksStrike
+  保护过期后再次 strike                 | 成功打击    | bypass_expiredCard
+  有卡时 llnu 仍到账                    | 符合设计    | bypass_cardBlocksButLlnuStillReceived
+  超额 llnu 转账 (> victim null)        | strike 封顶 | test_strike_cannotExceedVictimNull
+  null P2P 转账触发 strike              | 永不触发    | bypass_nullTransfer_neverTriggersStrike
+  LP 未 seed 时 llnu P2P                | strike=0    | bypass_preSeedStrike
+  自转 llnu                             | strike=0    | test_selfTransfer_noStrikeNoBounty
+  奇数 strike 金额 bounty 取整            | 正确        | test_oddStrikeAmount_bountyRounding
+  受害者 null=0 收 llnu                 | 全额到账    | test_strikeWithZeroNull_deliversFullLlnu
+  重入 strike                           | 原子完成    | test_attack_reentrancy_strikeCompletes
+
+  【保护数量绕过】结论: **未发现**
+    • 必须 burn 精确 CARD_*_NULL 数量 (transferFrom → dead)
+    • isProtected 仅读 protectionExpiry > block.timestamp
+    • 无法通过更少 null 获得同等保护时长
+    • 无法通过 stake/其他路径获得免疫 (v2 已移除 stake API)
+
+5.2 Mint / 供应攻击
+
+  攻击向量                              | 结果        | 测试
+  -------------------------------------|-------------|---------------------------
+  超 4 ETH 总 cap                       | REVERT      | test_mintCapReverts, Fuzz
+  超 0.1 ETH/地址                       | REVERT      | test_addressCap_reverts
+  错误 msg.value                        | REVERT      | test_wrongEthAmount_reverts
+  非 minter mint                        | REVERT      | test_attack_unauthorizedMint
+  转账 bypass mint cap                  | 不可行      | test_attack_transferDoesNotBypassMintCap
+  双次 configure                        | REVERT      | test_attack_doubleConfigureMint
+  Flash loan 填 cap                     | REVERT      | test_flashLoan_cannotBypassMintCap
+  超 100M supply                        | REVERT      | 内置于 _mintShares
+
+5.3 llnu / DEX 攻击
+
+  攻击向量                              | 结果        | 测试
+  -------------------------------------|-------------|---------------------------
+  llnu → PoolManager                    | REVERT      | test_llnuCannotUseV4PoolManager
+  llnu → 合约地址                       | REVERT      | bypass_llnuViaContract
+  创建 llnu v4 池                       | REVERT      | V4Hook before* rejects
+  合约通过 flash loan 代 strike         | REVERT      | test_flashLoan_contractCannotStrikeViaLlnu
+  null DEX swap 触发 strike             | 不触发      | DexExemptionTest
+  购 null 后 P2P strike                 | 正常        | test_p2pStrike_afterNullPoolFlow
+
+5.4 Admin / 特权攻击
+
+  攻击向量                              | 结果        | 测试
+  -------------------------------------|-------------|---------------------------
+  非 admin endMint / withdrawEth        | REVERT      | AdminSecurityTest
+  admin 直接 burn 用户 null             | REVERT      | test_adminCannotBurnUserBalancesDirectly
+  admin 免费 mint                       | REVERT      | test_adminCannotMintForFree
+  admin withdrawEth 抽走早期 ETH        | **成功**    | test_admin_withdrawEth_stealsEarlyProceeds
+  admin endMint 阻止后续 mint           | **成功**    | test_admin_endMintEarly_stopsFurtherMint
+  admin endMint 且已达 cap              | 触发 seed   | test_adminCanEndMint (逻辑)
+
+5.5 Hook / v4 攻击
+
+  攻击向量                              | 结果        | 测试
+  -------------------------------------|-------------|---------------------------
+  非 PoolManager 调 hook 回调           | REVERT      | V4HookTest
+  llnu 池 addLiquidity/swap/donate    | REVERT      | V4HookTest
+  误转 token 到 hook                    | owner 可 recover | test_recoverMisdirectedTokens
+
+5.6 Fuzz 属性
+
+  • mintOverCapReverts: 512 runs — 任意 shares 组合不超 cap
+  • mintRespectsCap: 512 runs — 累计 eth 不超 MINT_TARGET
+  • strikeBurnsEqualTokens: 512 runs — strike 销毁 llnu 与 null 等量 (在 cap 内)
+
+================================================================================
+六、漏洞与风险分级
+================================================================================
+
+6.1 未发现 — 重大可利用漏洞
+
+  ✓ 保护卡成本/时长无法链上绕过
+  ✓ strike 无法在 liquiditySeeded 前生效
+  ✓ executeStrike 仅限 hook 调用
+  ✓ llnu 无法通过 DEX/合约路径规避 P2P 规则
+  ✓ mint/supply cap 在 fuzz + 攻击测试中稳固
+  ✓ 50/50 bounty 分割与 min(T, victimNull) 封顶正确
+
+6.2 中等 — 设计/信任假设 (非意外 bug)
+
+  ID: ADMIN-01  Admin withdrawEth 抽走 NullMint 内 ETH
+  严重性: Medium (By Design)
+  描述: ADMIN (0xeB9c027FA55cEe6D722177f06441B451961731FC) 可随时提走合约
+        全部 ETH。早期参与者 ETH 可被提走; 后续 minter 仍可凑满 cap 并完成 seed,
+        但被提走的 ETH 不会进入 LP。
+  影响: LP 深度不足 / 早期用户资金信任风险
+  建议: 主网前移除 withdrawEth, 或限制为 seed 前不可提 / 多签 + timelock
+
+  ID: ADMIN-02  Admin endMint 提前结束公募
+  严重性: Medium (By Design)
+  描述: endMint() 设置 mintEnded; 若 totalEthRaised < 4 ETH 则不会 seed。
+  影响: strike 永不激活 (liquiditySeeded  false), 机制半瘫痪
+  建议: 链下治理约束; 或改为仅 cap 触发的不可撤销结束
+
+6.3 低 — 产品/环境限制
+
+  ID: PROD-01  EOA-only llnu
+  描述: code.length != 0 的地址无法收发 llnu
+  影响: 智能钱包 / Safe / AA 用户无法参与 strike 生态
+
+  ID: PROD-02  CEX 无法链上禁止
+  描述: 若 CEX 用 EOA 热钱包, 规则无法区分 CEX 与普通用户
+
+  ID: PROD-03  Sepolia/Mainnet 版本漂移
+  描述: 链上 v1 与本地 v2 参数/逻辑不一致, 文档 SECURITY.md 仍写旧机制
+  影响: 用户/开发者误用地址或错误预期
+
+  ID: PROD-04  MINT_TARGET_USD6 未使用
+  描述: 常量存在但未参与逻辑; "4 ETH 市值" 为推导值非独立链上规则
+
+6.4 信息
+
+  ID: INFO-01  Hook owner recoverMisdirectedTokens — 仅 hook 上误转余额
+  ID: INFO-02  卡费 null 永久 burn → 通缩, 非 admin 可提
+  ID: INFO-03  未做第三方 formal audit
+
+================================================================================
+七、机制端到端流程验证 (本地 v2)
+================================================================================
+
+  [1] Deploy: NullMint + mined Hook + NullToken + LlnuToken + wire
+      ✓ ProtocolTestBase._deployProtocol
+
+  [2] Mint: 用户支付 0.002 ETH/share → 25k null + 50k llnu
+      ✓ test_mint_accounting, test_mint_bonusIsTwoLlnuPerNull
+
+  [3] Cap: 满 4 ETH → mintEnded + _seedLiquidity
+      ✓ test_autoSeedLiquidityAtCap
+      → null 50M 用户侧 + 50M mint 给 hook 进 LP
+
+  [4] liquiditySeeded = true → strike 激活
+      ✓ test_strikeInactiveBeforeLiquiditySeeded (seed 前)
+      ✓ test_strike_splitsNullHalfDeadHalfBounty (seed 后)
+
+  [5] Shield: burn 60k/160k/460k null → protectionExpiry
+      ✓ NullHookTest 全套
+
+  [6] llnu EOA P2P → processLlnuStrike → executeStrike
+      ✓ LlnuStrikeTest 16 项
+
+  [7] null 可在 v4 池交易, llnu 不可
+      ✓ DexExemptionTest + V4HookTest
+
+  全流程: **本地 v2 跑通**
+
+================================================================================
+八、Sepolia 测试网现状与差距
+================================================================================
+
+  已验证 (Fork v1):
+    • 部署 wiring 正确
+    • mint 20k null + 20k llnu (1:1)
+    • llnu → PoolManager revert
+    • null → PoolManager 允许
+    • 120k 月卡 + legacy strike 行为
+    • admin 无法 burnFromStrike (v2 已改 executeStrike)
+
+  未验证 (v2 特有, 需新部署):
+    • 25k/50k mint 比例
+    • 60k/160k/460k 卡常量
+    • 50/50 strike bounty
+    • liquiditySeeded 门禁 (Sepolia v1 可能无此 gate 或行为不同)
+    • 满 cap auto LP 50M null
+    • 移除 stake 后的纯卡保护
+
+================================================================================
+九、建议行动项 (优先级)
+================================================================================
+
+  P0 — 上线 v2 前必做
+    [ ] Sepolia 部署 v2 全栈 + 更新所有地址
+    [ ] 更新 TestnetFullVerify.s.sol / SepoliaFork.t.sol 为 v2 断言
+    [ ] 链上 E2E: mint → cap → seed → strike → shield
+    [ ] 决定 Admin withdrawEth 去留并文档化
+
+  P1 — 安全加固
+    [ ] Admin 多签 / timelock
+    [ ] 第三方 audit
+    [ ] 同步 SECURITY.md / TEST_PLAN.md / 8 语言 i18n
+
+  P2 — 运维
+    [ ] 主网 CREATE2 hook 挖矿与部署 runbook
+    [ ] 监控 liquiditySeeded / mintEnded 事件
+
+================================================================================
+十、测试命令速查
+================================================================================
+
+  # 全量本地
+  forge test --summary
+
+  # 对抗专项
+  forge test --match-contract SecurityAdversarialTest -vv
+
+  # Sepolia fork (当前 = v1 链上)
+  forge test --match-contract SepoliaForkTest \
+    --fork-url https://ethereum-sepolia-rpc.publicnode.com
+
+  # v2 部署后 live 验证 (需更新脚本)
+  forge script script/TestnetFullVerify.s.sol \
+    --rpc-url $SEPOLIA_RPC_URL --broadcast
+
+================================================================================
+十一、最终结论
+================================================================================
+
+1. 本地 v2 机制在 85 项自动化测试中全部通过, 含 13 项专项对抗测试。
+2. 针对用户关心的「保护所需数量被绕过」等重大问题: **未发现链上绕过路径**;
+   保护必须按 CARD_*_NULL 全额 burn, 且仅在 protectionExpiry 内有效。
+3. Sepolia 当前为 v1; fork 8/8 通过仅证明旧部署可用, **不能替代 v2 测试网验证**。
+4. 最大实际风险来自 Admin 特权 (withdrawEth / endMint), 属治理/设计选择而非实现 bug。
+5. 建议完成 Sepolia v2 部署 + 链上 E2E + Admin 权限硬化后再考虑主网。
+
+================================================================================
+报告结束
+================================================================================

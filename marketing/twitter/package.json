@@ -1,0 +1,15 @@
+{
+  "name": "null-twitter-marketing",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "post": "node post.mjs",
+    "post:dry": "node post.mjs --dry-run",
+    "post:next": "node post.mjs --next",
+    "list": "node post.mjs --list"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "twitter-api-v2": "^1.22.0"
+  }
+}
