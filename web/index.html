@@ -2,6 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      ;(function () {
+        var host = location.hostname
+        var proto = location.protocol
+        if (host === 'www.null.baby') {
+          location.replace(
+            'https://null.baby' + location.pathname + location.search + location.hash,
+          )
+          return
+        }
+        if (proto === 'http:' && (host === 'null.baby' || host.endsWith('.github.io'))) {
+          location.replace('https://' + location.host + location.pathname + location.search + location.hash)
+        }
+      })()
+    </script>
+    <link rel="canonical" href="https://null.baby/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
