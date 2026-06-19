@@ -183,7 +183,10 @@ const en = {
     annual: 'Annual',
     cardDays: '{{days}} days · {{amount}} $null',
     approveNull: 'Approve $null',
-    purchaseCard: 'Purchase card',
+    purchaseCard: 'Purchase protection card',
+    purchaseHint: 'First click approves {{amount}} $null only (exact card amount). For your asset security, please do not grant unlimited approval.',
+    approving: 'Approving {{amount}} $null…',
+    purchasing: 'Purchasing…',
     txConfirmed: 'Transaction confirmed',
   },
   overview: {

@@ -184,6 +184,7 @@ const ko = {
     cardDays: '{{days}}일 · {{amount}} $null',
     approveNull: '$null 승인',
     purchaseCard: '카드 구매',
+    purchaseHint: '첫 클릭 시 {{amount}} $null만 승인합니다(해당 카드 정확한 금액). 자산 안전을 위해 무제한 승인은 하지 마세요.',
     txConfirmed: '트랜잭션 확인됨',
   },
   overview: {

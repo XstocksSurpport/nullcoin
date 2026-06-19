@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { parseUnits } from 'viem'
 import {
@@ -18,12 +18,11 @@ import { ProtocolGate } from './ProtocolGate'
 
 type CardType = 0 | 1 | 2
 
-const MAX_CARD_BURN = parseUnits(String(CARD_YEAR_NULL), 18)
-
 export function ShieldPanel() {
   const { t } = useTranslation()
   const { address, contracts } = useTargetChain()
   const [card, setCard] = useState<CardType>(0)
+  const buyAfterApproveRef = useRef(false)
 
   const CARDS: { type: CardType; label: string; days: number; nullBurn: bigint }[] = [
     { type: 0, label: t('shield.monthly'), days: 30, nullBurn: parseUnits(String(CARD_MONTH_NULL), 18) },
@@ -31,9 +30,11 @@ export function ShieldPanel() {
     { type: 2, label: t('shield.annual'), days: 365, nullBurn: parseUnits(String(CARD_YEAR_NULL), 18) },
   ]
 
-  const cardCost = CARDS[card].nullBurn
+  const selected = CARDS[card]
+  const cardCost = selected.nullBurn
+  const cardAmountLabel = Number(cardCost / 10n ** 18n).toLocaleString()
 
-  const { data: nullAllowance } = useReadContract({
+  const { data: nullAllowance, refetch: refetchAllowance } = useReadContract({
     address: contracts?.nullToken,
     abi: erc20Abi,
     functionName: 'allowance',
@@ -41,12 +42,51 @@ export function ShieldPanel() {
     query: { enabled: !!address && !!contracts },
   })
 
-  const { writeContract, data: hash, isPending, error } = useWriteContract()
-  const { isLoading: confirming, isSuccess } = useWaitForTransactionReceipt({ hash })
+  const {
+    writeContract: writeApprove,
+    data: approveHash,
+    isPending: approvePending,
+    error: approveError,
+    reset: resetApprove,
+  } = useWriteContract()
 
-  function handleBuyCard() {
-    if (!contracts) return
-    writeContract({
+  const {
+    writeContract: writeBuy,
+    data: buyHash,
+    isPending: buyPending,
+    error: buyError,
+    reset: resetBuy,
+  } = useWriteContract()
+
+  const approveReceipt = useWaitForTransactionReceipt({ hash: approveHash })
+  const buyReceipt = useWaitForTransactionReceipt({ hash: buyHash })
+
+  const needsNullApprove = nullAllowance === undefined || nullAllowance < cardCost
+
+  const busy =
+    approvePending ||
+    approveReceipt.isLoading ||
+    buyPending ||
+    buyReceipt.isLoading
+
+  function handlePurchase() {
+    if (!contracts || busy) return
+    resetApprove()
+    resetBuy()
+    buyAfterApproveRef.current = false
+
+    if (needsNullApprove) {
+      buyAfterApproveRef.current = true
+      writeApprove({
+        address: contracts.nullToken,
+        abi: erc20Abi,
+        functionName: 'approve',
+        args: [contracts.protocolHook, cardCost],
+      })
+      return
+    }
+
+    writeBuy({
       address: contracts.protocolHook,
       abi: protocolHookAbi,
       functionName: 'buyProtection',
@@ -54,17 +94,29 @@ export function ShieldPanel() {
     })
   }
 
-  function handleApproveNull() {
-    if (!contracts) return
-    writeContract({
-      address: contracts.nullToken,
-      abi: erc20Abi,
-      functionName: 'approve',
-      args: [contracts.protocolHook, MAX_CARD_BURN],
+  useEffect(() => {
+    if (!buyAfterApproveRef.current || !approveReceipt.isSuccess || !contracts) return
+    buyAfterApproveRef.current = false
+    void refetchAllowance()
+    writeBuy({
+      address: contracts.protocolHook,
+      abi: protocolHookAbi,
+      functionName: 'buyProtection',
+      args: [card],
     })
+  }, [approveReceipt.isSuccess, card, contracts, refetchAllowance, writeBuy])
+
+  function purchaseLabel() {
+    if (approvePending || approveReceipt.isLoading) {
+      return t('shield.approving', { amount: cardAmountLabel })
+    }
+    if (buyPending || buyReceipt.isLoading) {
+      return t('shield.purchasing')
+    }
+    return t('shield.purchaseCard')
   }
 
-  const needsNullApprove = nullAllowance === undefined || nullAllowance < cardCost
+  const error = approveError ?? buyError
 
   return (
     <ProtocolGate title={t('shield.title')}>
@@ -79,6 +131,7 @@ export function ShieldPanel() {
               key={c.type}
               type="button"
               className={`card-option ${card === c.type ? 'active' : ''}`}
+              disabled={busy}
               onClick={() => setCard(c.type)}
             >
               <span className="card-title">{c.label}</span>
@@ -92,27 +145,22 @@ export function ShieldPanel() {
           ))}
         </div>
 
-        {needsNullApprove && (
-          <button
-            type="button"
-            className="btn-ghost full"
-            disabled={isPending || confirming}
-            onClick={handleApproveNull}
-          >
-            {t('shield.approveNull')}
-          </button>
-        )}
-
         <button
           type="button"
-          className="btn-primary full"
-          disabled={isPending || confirming || needsNullApprove}
-          onClick={handleBuyCard}
+          className="btn-primary full shield-purchase-btn"
+          disabled={busy}
+          onClick={handlePurchase}
         >
-          {t('shield.purchaseCard')}
+          {purchaseLabel()}
         </button>
 
-        {isSuccess && <p className="success">{t('shield.txConfirmed')}</p>}
+        {needsNullApprove && !busy && (
+          <p className="muted shield-purchase-hint">
+            {t('shield.purchaseHint', { amount: cardAmountLabel })}
+          </p>
+        )}
+
+        {buyReceipt.isSuccess && <p className="success">{t('shield.txConfirmed')}</p>}
         {error && <p className="error">{error.message.split('\n')[0]}</p>}
       </section>
     </ProtocolGate>

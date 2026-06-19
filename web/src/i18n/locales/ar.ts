@@ -184,6 +184,7 @@ const ar = {
     cardDays: '{{days}} يوماً · {{amount}} $null',
     approveNull: 'الموافقة على $null',
     purchaseCard: 'شراء البطاقة',
+    purchaseHint: 'النقر الأول يوافق فقط على {{amount}} $null (المبلغ الدقيق للبطاقة). لأمان أصولك، لا تمنح موافقة غير محدودة.',
     txConfirmed: 'تم تأكيد المعاملة',
   },
   overview: {

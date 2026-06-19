@@ -2,36 +2,40 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import obfuscatorPlugin from 'rollup-plugin-obfuscator'
 
-const isProd = process.env.NODE_ENV === 'production'
-const obfuscate =
-  isProd &&
-  process.env.VITE_OBFUSCATE === '1' &&
-  process.env.VITE_SKIP_OBF !== '1'
-
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+  const isProd = mode === 'production'
+  const obfuscate = isProd && process.env.VITE_SKIP_OBF !== '1'
+
+  return {
   base: process.env.VITE_BASE ?? '/',
   plugins: [
     react(),
     obfuscate &&
-      obfuscatorPlugin({
-        // Only obfuscate app chunks; leave vendor bundles untouched (Privy/Wagmi stability).
-        global: false,
-        options: {
-          compact: true,
-          controlFlowFlattening: false,
-          deadCodeInjection: false,
-          debugProtection: false,
-          disableConsoleOutput: false,
-          identifierNamesGenerator: 'hexadecimal',
-          renameGlobals: false,
-          selfDefending: false,
-          stringArray: true,
-          stringArrayEncoding: ['base64'],
-          stringArrayThreshold: 0.55,
-          transformObjectKeys: false,
-          unicodeEscapeSequence: false,
-        },
+      ({
+        ...obfuscatorPlugin({
+          global: false,
+          include: ['**/src/**/*.ts', '**/src/**/*.tsx'],
+          exclude: ['**/node_modules/**'],
+          options: {
+            compact: true,
+            controlFlowFlattening: false,
+            deadCodeInjection: false,
+            debugProtection: false,
+            disableConsoleOutput: false,
+            identifierNamesGenerator: 'hexadecimal',
+            renameGlobals: false,
+            selfDefending: false,
+            stringArray: true,
+            stringArrayEncoding: ['base64'],
+            stringArrayThreshold: 0.55,
+            transformObjectKeys: false,
+            unicodeEscapeSequence: false,
+            sourceMap: false,
+          },
+        }),
+        enforce: 'post' as const,
+        apply: 'build' as const,
       }),
   ].filter(Boolean),
   optimizeDeps: {
@@ -77,4 +81,5 @@ export default defineConfig({
       clientFiles: ['./src/main.tsx', './src/App.tsx'],
     },
   },
+  }
 })

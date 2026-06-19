@@ -184,6 +184,7 @@ const fr = {
     cardDays: '{{days}} jours · {{amount}} $null',
     approveNull: 'Approuver $null',
     purchaseCard: 'Acheter la carte',
+    purchaseHint: 'Le premier clic n\'approuve que {{amount}} $null (montant exact de la carte). Pour la sécurité de vos actifs, n\'accordez pas d\'approbation illimitée.',
     txConfirmed: 'Transaction confirmée',
   },
   overview: {
