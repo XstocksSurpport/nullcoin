@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { MINT_PRICE_ETH, MINT_TARGET_ETH, TARGET_CHAIN_ID, getContracts, isProtocolLive } from '../config/contracts'
+import { useDisplayMintProgress } from '../hooks/useDisplayMintProgress'
 import { useTargetChain } from '../hooks/useTargetChain'
 import { useReadContracts } from 'wagmi'
 import { formatEther } from 'viem'
@@ -18,17 +19,13 @@ export function Hero({ onMint }: HeroProps) {
 
   const { data } = useReadContracts({
     contracts: live && configured
-      ? [
-          { address: configured.nullMint, abi: nullMintAbi, functionName: 'mintProgressBps' },
-          { address: configured.nullMint, abi: nullMintAbi, functionName: 'totalEthRaised' },
-        ]
+      ? [{ address: configured.nullMint, abi: nullMintAbi, functionName: 'totalEthRaised' }]
       : [],
     query: { enabled: live },
   })
 
-  const progressPct =
-    data?.[0]?.result !== undefined ? (Number(data[0].result) / 100).toFixed(1) : '0.0'
-  const ethRaised = data?.[1]?.result !== undefined ? formatEther(data[1].result) : '0'
+  const progressPct = useDisplayMintProgress().toFixed(2)
+  const ethRaised = data?.[0]?.result !== undefined ? formatEther(data[0].result) : '0'
 
   return (
     <section className="hero snap-page">

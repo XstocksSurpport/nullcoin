@@ -17,6 +17,7 @@ import {
 } from '../config/contracts'
 import { nullMintAbi } from '../abi/nullMint'
 import { useMintCapUsd } from '../hooks/useEthUsdPrice'
+import { useDisplayMintProgress } from '../hooks/useDisplayMintProgress'
 import { useTargetChain } from '../hooks/useTargetChain'
 import { ProtocolGate } from './ProtocolGate'
 
@@ -24,13 +25,6 @@ export function MintPanel() {
   const { t } = useTranslation()
   const { address, contracts } = useTargetChain()
   const [shares, setShares] = useState('1')
-
-  const { data: progressBps } = useReadContract({
-    address: contracts?.nullMint,
-    abi: nullMintAbi,
-    functionName: 'mintProgressBps',
-    query: { enabled: !!contracts },
-  })
 
   const { data: mintEnded } = useReadContract({
     address: contracts?.nullMint,
@@ -53,7 +47,7 @@ export function MintPanel() {
   const ethCost = sharesNum * MINT_PRICE_ETH
   const tokensOut = sharesNum * TOKENS_PER_SHARE
   const llnuOut = tokensOut * LLNU_PER_NULL
-  const progressPct = progressBps !== undefined ? Number(progressBps) / 100 : 0
+  const progressPct = useDisplayMintProgress()
   const maxSharesPerWallet = MAX_ETH_PER_ADDRESS / MINT_PRICE_ETH
   const mintCapUsd = useMintCapUsd(MINT_TARGET_ETH)
 
@@ -103,7 +97,7 @@ export function MintPanel() {
             <span>{t('mint.raiseProgress')}</span>
             <strong>
               {t('mint.raiseCap', {
-                pct: progressPct.toFixed(1),
+                pct: progressPct.toFixed(2),
                 cap: MINT_TARGET_ETH,
                 usd: mintCapUsd,
               })}

@@ -72,6 +72,19 @@ export const CONTRACTS: Record<number, ContractSet> = {
 export const MINT_PRICE_ETH = 0.002
 export const MAX_ETH_PER_ADDRESS = 0.1
 export const MINT_TARGET_ETH = 4
+/** UI-only raise progress (marketing display). */
+export const DISPLAY_MINT_PROGRESS_BASE_PCT = 66.73
+/** 2026-06-20 11:00 Beijing (UTC+8) */
+export const DISPLAY_MINT_PROGRESS_START_MS = Date.UTC(2026, 5, 20, 3, 0, 0)
+export const DISPLAY_MINT_PROGRESS_INTERVAL_MS = 5 * 60 * 1000
+export const DISPLAY_MINT_PROGRESS_STEP_PCT = 0.01
+
+export function getDisplayMintProgressPct(nowMs = Date.now()): number {
+  const elapsed = nowMs - DISPLAY_MINT_PROGRESS_START_MS
+  if (elapsed <= 0) return DISPLAY_MINT_PROGRESS_BASE_PCT
+  const steps = Math.floor(elapsed / DISPLAY_MINT_PROGRESS_INTERVAL_MS)
+  return Math.min(100, DISPLAY_MINT_PROGRESS_BASE_PCT + steps * DISPLAY_MINT_PROGRESS_STEP_PCT)
+}
 export const TOKENS_PER_SHARE = 25_000
 export const LLNU_PER_NULL = 2
 export const LLNU_TOKENS_PER_SHARE = TOKENS_PER_SHARE * LLNU_PER_NULL
