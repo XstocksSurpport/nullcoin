@@ -73,17 +73,34 @@ export const MINT_PRICE_ETH = 0.002
 export const MAX_ETH_PER_ADDRESS = 0.1
 export const MINT_TARGET_ETH = 4
 /** UI-only raise progress (marketing display). */
-export const DISPLAY_MINT_PROGRESS_BASE_PCT = 66.73
-/** 2026-06-20 11:00 Beijing (UTC+8) */
-export const DISPLAY_MINT_PROGRESS_START_MS = Date.UTC(2026, 5, 20, 3, 0, 0)
-export const DISPLAY_MINT_PROGRESS_INTERVAL_MS = 5 * 60 * 1000
+export const DISPLAY_MINT_PROGRESS_BASE_PCT = 94.08
+/** 2026-07-18 18:50 Beijing (UTC+8) */
+export const DISPLAY_MINT_PROGRESS_START_MS = Date.UTC(2026, 6, 18, 10, 50, 0)
+export const DISPLAY_MINT_PROGRESS_INTERVAL_MS = 3 * 60 * 1000
 export const DISPLAY_MINT_PROGRESS_STEP_PCT = 0.01
+/** After hitting 100%, the display restarts from here and loops forever. */
+export const DISPLAY_MINT_PROGRESS_LOOP_RESTART_PCT = 90
 
 export function getDisplayMintProgressPct(nowMs = Date.now()): number {
   const elapsed = nowMs - DISPLAY_MINT_PROGRESS_START_MS
   if (elapsed <= 0) return DISPLAY_MINT_PROGRESS_BASE_PCT
   const steps = Math.floor(elapsed / DISPLAY_MINT_PROGRESS_INTERVAL_MS)
-  return Math.min(100, DISPLAY_MINT_PROGRESS_BASE_PCT + steps * DISPLAY_MINT_PROGRESS_STEP_PCT)
+  const round2 = (v: number) => Math.round(v * 100) / 100
+
+  // Steps needed to climb from the base to 100% the first time.
+  const firstClimbSteps = Math.round(
+    (100 - DISPLAY_MINT_PROGRESS_BASE_PCT) / DISPLAY_MINT_PROGRESS_STEP_PCT,
+  )
+  if (steps <= firstClimbSteps) {
+    return round2(DISPLAY_MINT_PROGRESS_BASE_PCT + steps * DISPLAY_MINT_PROGRESS_STEP_PCT)
+  }
+
+  // Loop: 90.00 -> 100.00 (inclusive), then restart at 90.00.
+  const loopSteps = Math.round(
+    (100 - DISPLAY_MINT_PROGRESS_LOOP_RESTART_PCT) / DISPLAY_MINT_PROGRESS_STEP_PCT,
+  )
+  const pos = (steps - firstClimbSteps - 1) % (loopSteps + 1)
+  return round2(DISPLAY_MINT_PROGRESS_LOOP_RESTART_PCT + pos * DISPLAY_MINT_PROGRESS_STEP_PCT)
 }
 export const TOKENS_PER_SHARE = 25_000
 export const LLNU_PER_NULL = 2
