@@ -117,7 +117,7 @@ const de = {
     title1: 'Verifizierte',
     title2: 'Contracts.',
     lead: '{{network}}. Vor der Signatur auf',
-    etherscan: 'Etherscan',
+    Blockscout: 'Blockscout',
     leadSuffix: 'verifizieren.',
     pending: 'Adressen werden nach dem Mainnet-Deployment veröffentlicht.',
   },
@@ -133,7 +133,7 @@ const de = {
     protection: 'Schutz',
   },
   footer: {
-    copy: '© {{year}} · Ethereum Mainnet',
+    copy: '© {{year}} · Robinhood Chain',
   },
   protocolGate: {
     connect: 'Verbinden Sie Ihre Wallet auf {{network}}, um fortzufahren.',
@@ -244,7 +244,7 @@ const de = {
       },
       addresses: {
         title: 'Contract-Adressen',
-        mainnet: 'Ethereum Mainnet',
+        mainnet: 'Robinhood Chain',
       },
       faq: {
         title: 'FAQ',
@@ -258,7 +258,7 @@ const de = {
     },
     about: {
       whatIsP1:
-        'null / llnu ist ein Dual-Token-Protokoll auf Ethereum. $null wird nach dem Liquiditäts-Seed auf Uniswap v4 gehandelt. $llnu bewegt sich Wallet-zu-Wallet unter On-Chain-Regeln, die durch den Protokoll-Hook durchgesetzt werden.',
+        'null / llnu ist ein Dual-Token-Protokoll auf Robinhood Chain. $null wird nach dem Liquiditäts-Seed auf Uniswap v4 gehandelt. $llnu bewegt sich Wallet-zu-Wallet unter On-Chain-Regeln, die durch den Protokoll-Hook durchgesetzt werden.',
       whatIsP2:
         'Nach dem v4-Pool kann das Senden von $llnu von einer EOA an eine andere den Empfänger treffen — einen Teil seines $null verbrennen und den Absender belohnen, ohne dass das Opfer signiert.',
       flow1:
@@ -355,7 +355,7 @@ const de = {
     },
     addresses: {
       verify: 'Jede Adresse auf',
-      etherscan: 'Etherscan',
+      Blockscout: 'Blockscout',
       verifySuffix: 'verifizieren, bevor Sie Transaktionen signieren.',
       contract: 'Contract',
       address: 'Adresse',
@@ -388,7 +388,7 @@ const de = {
       shieldCardsValue: '{{month}} / {{quarter}} / {{year}} $null verbrannt (30 / 90 / 365 Tage)',
       trading: 'Handel',
       tradingValue: '$null ↔ ETH auf v4 · $llnu nur EOA-P2P',
-      footer: 'Nutzen Sie diese Website und Etherscan zur Interaktion mit dem Protokoll.',
+      footer: 'Nutzen Sie diese Website und Blockscout zur Interaktion mit dem Protokoll.',
     },
   },
 } as const

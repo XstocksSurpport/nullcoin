@@ -117,7 +117,7 @@ const ar = {
     title1: 'عقود',
     title2: 'موثَّقة.',
     lead: '{{network}}. تحقق على',
-    etherscan: 'Etherscan',
+    Blockscout: 'Blockscout',
     leadSuffix: 'قبل التوقيع.',
     pending: 'تُنشر العناوين بعد نشر الشبكة الرئيسية.',
   },
@@ -133,7 +133,7 @@ const ar = {
     protection: 'الحماية',
   },
   footer: {
-    copy: '© {{year}} · Ethereum Mainnet',
+    copy: '© {{year}} · Robinhood Chain',
   },
   protocolGate: {
     connect: 'اربط محفظتك على {{network}} للمتابعة.',
@@ -244,7 +244,7 @@ const ar = {
       },
       addresses: {
         title: 'عناوين العقود',
-        mainnet: 'Ethereum Mainnet',
+        mainnet: 'Robinhood Chain',
       },
       faq: {
         title: 'الأسئلة الشائعة',
@@ -258,7 +258,7 @@ const ar = {
     },
     about: {
       whatIsP1:
-        'null / llnu بروتوكول ثنائي الرموز على Ethereum. يُتداول $null على Uniswap v4 بعد تخصيص السيولة. ينتقل $llnu بين المحافظ وفق قواعد على السلسلة يفرضها hook البروتوكول.',
+        'null / llnu بروتوكول ثنائي الرموز على Robinhood Chain. يُتداول $null على Uniswap v4 بعد تخصيص السيولة. ينتقل $llnu بين المحافظ وفق قواعد على السلسلة يفرضها hook البروتوكول.',
       whatIsP2:
         'بعد وجود مجمع v4، إرسال $llnu من EOA إلى آخر قد يضرب المستلم — يحرق جزءاً من $null لديه ويكافئ المُرسِل، دون توقيع الضحية.',
       flow1:
@@ -355,7 +355,7 @@ const ar = {
     },
     addresses: {
       verify: 'تحقق من كل عنوان على',
-      etherscan: 'Etherscan',
+      Blockscout: 'Blockscout',
       verifySuffix: 'قبل توقيع المعاملات.',
       contract: 'العقد',
       address: 'العنوان',
@@ -388,7 +388,7 @@ const ar = {
       shieldCardsValue: '{{month}} / {{quarter}} / {{year}} $null محروق (30 / 90 / 365 يوماً)',
       trading: 'التداول',
       tradingValue: '$null ↔ ETH على v4 · $llnu EOA P2P فقط',
-      footer: 'استخدم هذا الموقع وEtherscan للتفاعل مع البروتوكول.',
+      footer: 'استخدم هذا الموقع وBlockscout للتفاعل مع البروتوكول.',
     },
   },
 } as const

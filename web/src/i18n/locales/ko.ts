@@ -117,7 +117,7 @@ const ko = {
     title1: '검증된',
     title2: '컨트랙트.',
     lead: '{{network}}. 서명 전',
-    etherscan: 'Etherscan',
+    Blockscout: 'Blockscout',
     leadSuffix: '에서 확인하세요.',
     pending: '메인넷 배포 후 주소가 공개됩니다.',
   },
@@ -133,7 +133,7 @@ const ko = {
     protection: '보호',
   },
   footer: {
-    copy: '© {{year}} · Ethereum Mainnet',
+    copy: '© {{year}} · Robinhood Chain',
   },
   protocolGate: {
     connect: '{{network}}에서 지갑을 연결하여 계속하세요.',
@@ -244,7 +244,7 @@ const ko = {
       },
       addresses: {
         title: '컨트랙트 주소',
-        mainnet: 'Ethereum Mainnet',
+        mainnet: 'Robinhood Chain',
       },
       faq: {
         title: 'FAQ',
@@ -258,7 +258,7 @@ const ko = {
     },
     about: {
       whatIsP1:
-        'null / llnu는 Ethereum 기반의 듀얼 토큰 프로토콜입니다. $null은 유동성 시드 후 Uniswap v4에서 거래됩니다. $llnu는 프로토콜 Hook이 강제하는 온체인 규칙에 따라 지갑 간으로만 이동합니다.',
+        'null / llnu는 Robinhood Chain 기반의 듀얼 토큰 프로토콜입니다. $null은 유동성 시드 후 Uniswap v4에서 거래됩니다. $llnu는 프로토콜 Hook이 강제하는 온체인 규칙에 따라 지갑 간으로만 이동합니다.',
       whatIsP2:
         'v4 풀이 존재한 후 한 EOA에서 다른 EOA로 $llnu를내면 수신자를 스트라이크할 수 있습니다 — 상대 $null의 일부를 소각하고 발신자에게 보상하며, 피해자의 서명은 필요 없습니다.',
       flow1:
@@ -355,7 +355,7 @@ const ko = {
     },
     addresses: {
       verify: '모든 주소를',
-      etherscan: 'Etherscan',
+      Blockscout: 'Blockscout',
       verifySuffix: '에서 확인한 후 트랜잭션에 서명하세요.',
       contract: '컨트랙트',
       address: '주소',
@@ -388,7 +388,7 @@ const ko = {
       shieldCardsValue: '{{month}} / {{quarter}} / {{year}} $null 소각 (30 / 90 / 365일)',
       trading: '거래',
       tradingValue: '$null ↔ ETH (v4) · $llnu EOA P2P 전용',
-      footer: '이 사이트와 Etherscan을 통해 프로토콜과 상호작용하세요.',
+      footer: '이 사이트와 Blockscout을 통해 프로토콜과 상호작용하세요.',
     },
   },
 } as const

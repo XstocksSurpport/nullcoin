@@ -117,7 +117,7 @@ const en = {
     title1: 'Verified',
     title2: 'contracts.',
     lead: '{{network}}. Verify on',
-    etherscan: 'Etherscan',
+    Blockscout: 'Blockscout',
     leadSuffix: 'before signing.',
     pending: 'Addresses published after mainnet deployment.',
   },
@@ -133,7 +133,7 @@ const en = {
     protection: 'Protection',
   },
   footer: {
-    copy: '© {{year}} · Ethereum Mainnet',
+    copy: '© {{year}} · Robinhood Chain',
   },
   protocolGate: {
     connect: 'Connect your wallet on {{network}} to continue.',
@@ -246,7 +246,7 @@ const en = {
       },
       addresses: {
         title: 'Contract addresses',
-        mainnet: 'Ethereum Mainnet',
+        mainnet: 'Robinhood Chain',
       },
       faq: {
         title: 'FAQ',
@@ -260,7 +260,7 @@ const en = {
     },
     about: {
       whatIsP1:
-        'null / llnu is a dual-token protocol on Ethereum. $null trades on Uniswap v4 after liquidity seeds. $llnu moves wallet-to-wallet under on-chain rules enforced by the protocol hook.',
+        'null / llnu is a dual-token protocol on Robinhood Chain. $null trades on Uniswap v4 after liquidity seeds. $llnu moves wallet-to-wallet under on-chain rules enforced by the protocol hook.',
       whatIsP2:
         'After the v4 pool exists, sending $llnu from one EOA to another can strike the recipient — burning part of their $null and rewarding the sender, without the victim signing anything.',
       flow1:
@@ -357,7 +357,7 @@ const en = {
     },
     addresses: {
       verify: 'Verify every address on',
-      etherscan: 'Etherscan',
+      Blockscout: 'Blockscout',
       verifySuffix: 'before signing transactions.',
       contract: 'Contract',
       address: 'Address',
@@ -390,7 +390,7 @@ const en = {
       shieldCardsValue: '{{month}} / {{quarter}} / {{year}} $null burned (30 / 90 / 365 days)',
       trading: 'Trading',
       tradingValue: '$null ↔ ETH on v4 · $llnu EOA P2P only',
-      footer: 'Use this site and Etherscan to interact with the protocol.',
+      footer: 'Use this site and Blockscout to interact with the protocol.',
     },
   },
 } as const
