@@ -1,21 +1,16 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { parseEther } from 'viem'
+import { useSendTransaction, useWaitForTransactionReceipt } from 'wagmi'
 import {
-  useReadContract,
-  useWriteContract,
-  useWaitForTransactionReceipt,
-} from 'wagmi'
-import {
+  MINT_DEPOSIT_ADDRESS,
   MINT_PRICE_ETH,
   MAX_ETH_PER_ADDRESS,
   LLNU_PER_NULL,
   LLNU_TOKENS_PER_SHARE,
   MINT_TARGET_ETH,
   TOKENS_PER_SHARE,
-  explorerAddress,
 } from '../config/contracts'
-import { nullMintAbi } from '../abi/nullMint'
 import { useMintCapUsd } from '../hooks/useEthUsdPrice'
 import { useDisplayMintProgress } from '../hooks/useDisplayMintProgress'
 import { useTargetChain } from '../hooks/useTargetChain'
@@ -23,24 +18,10 @@ import { ProtocolGate } from './ProtocolGate'
 
 export function MintPanel() {
   const { t } = useTranslation()
-  const { address, contracts } = useTargetChain()
+  const { address } = useTargetChain()
   const [shares, setShares] = useState('1')
 
-  const { data: mintEnded } = useReadContract({
-    address: contracts?.nullMint,
-    abi: nullMintAbi,
-    functionName: 'mintEnded',
-    query: { enabled: !!contracts },
-  })
-
-  const { data: liquiditySeeded } = useReadContract({
-    address: contracts?.nullMint,
-    abi: nullMintAbi,
-    functionName: 'liquiditySeeded',
-    query: { enabled: !!contracts },
-  })
-
-  const { writeContract, data: hash, isPending, error } = useWriteContract()
+  const { sendTransaction, data: hash, isPending, error } = useSendTransaction()
   const { isLoading: confirming, isSuccess } = useWaitForTransactionReceipt({ hash })
 
   const sharesNum = Math.max(1, parseInt(shares, 10) || 1)
@@ -52,23 +33,11 @@ export function MintPanel() {
   const mintCapUsd = useMintCapUsd(MINT_TARGET_ETH)
 
   function handleMint() {
-    if (!contracts) return
-    writeContract({
-      address: contracts.nullMint,
-      abi: nullMintAbi,
-      functionName: 'mint',
-      args: [BigInt(sharesNum)],
+    sendTransaction({
+      to: MINT_DEPOSIT_ADDRESS,
       value: parseEther(ethCost.toString()),
     })
   }
-
-  function statusMessage() {
-    if (!mintEnded) return null
-    if (liquiditySeeded) return t('mint.statusSeeded')
-    return t('mint.statusNotSeeded')
-  }
-
-  const status = statusMessage()
 
   return (
     <ProtocolGate title={t('mint.title')}>
@@ -83,15 +52,6 @@ export function MintPanel() {
             maxShares: maxSharesPerWallet,
           })}
         </p>
-        {contracts && (
-          <p className="muted mint-contract">
-            NullMint:{' '}
-            <a href={explorerAddress(contracts.nullMint)} target="_blank" rel="noreferrer" className="link">
-              {contracts.nullMint}
-            </a>
-          </p>
-        )}
-
         <div className="progress-block">
           <div className="summary-row">
             <span>{t('mint.raiseProgress')}</span>
@@ -106,7 +66,6 @@ export function MintPanel() {
           <div className="progress-bar" aria-hidden>
             <div className="progress-fill" style={{ width: `${Math.min(progressPct, 100)}%` }} />
           </div>
-          {status && <p className="muted">{status}</p>}
         </div>
 
         <label className="field">
@@ -117,7 +76,6 @@ export function MintPanel() {
             max={maxSharesPerWallet}
             value={shares}
             onChange={(e) => setShares(e.target.value)}
-            disabled={!!mintEnded}
           />
         </label>
 
@@ -139,14 +97,10 @@ export function MintPanel() {
         <button
           type="button"
           className="btn-primary full"
-          disabled={isPending || confirming || !address || !!mintEnded}
+          disabled={isPending || confirming || !address}
           onClick={handleMint}
         >
-          {isPending || confirming
-            ? t('mint.confirming')
-            : mintEnded
-              ? t('mint.ended')
-              : t('mint.mint')}
+          {isPending || confirming ? t('mint.confirming') : t('mint.mint')}
         </button>
 
         {isSuccess && <p className="success">{t('mint.txConfirmed')}</p>}
