@@ -117,7 +117,7 @@ const zhTW = {
     title1: '已驗證',
     title2: '合約。',
     lead: '{{network}}。簽署前請於',
-    Blockscout: 'Blockscout',
+    etherscan: 'Basescan',
     leadSuffix: '驗證。',
     pending: '主網部署後公布合約地址。',
   },
@@ -133,7 +133,7 @@ const zhTW = {
     protection: '防護',
   },
   footer: {
-    copy: '© {{year}} · Robinhood Chain',
+    copy: '© {{year}} · Base',
   },
   protocolGate: {
     connect: '請在 {{network}} 上連接錢包以繼續。',
@@ -246,7 +246,7 @@ const zhTW = {
       },
       addresses: {
         title: '合約地址',
-        mainnet: 'Robinhood Chain',
+        mainnet: 'Base',
       },
       faq: {
         title: '常見問題',
@@ -260,7 +260,7 @@ const zhTW = {
     },
     about: {
       whatIsP1:
-        'null / llnu 是 Robinhood Chain 上的雙代幣協議。流動性注入後，$null 可在 Uniswap v4 上交易。$llnu 在協議 hook 強制的鏈上規則下，僅能於錢包間轉移。',
+        'null / llnu 是 Base 上的雙代幣協議。流動性注入後，$null 可在 Uniswap v4 上交易。$llnu 在協議 hook 強制的鏈上規則下，僅能於錢包間轉移。',
       whatIsP2:
         'v4 流動池存在後，從一個 EOA 向另一個 EOA 發送 $llnu 可能打擊收款方 — 銷毀其部分 $null 並獎勵發送者，無需受害者簽名。',
       flow1:
@@ -357,7 +357,7 @@ const zhTW = {
     },
     addresses: {
       verify: '簽署交易前，請於',
-      Blockscout: 'Blockscout',
+      etherscan: 'Basescan',
       verifySuffix: '驗證每個地址。',
       contract: '合約',
       address: '地址',
@@ -390,7 +390,7 @@ const zhTW = {
       shieldCardsValue: '{{month}} / {{quarter}} / {{year}} $null 銷毀（30 / 90 / 365 天）',
       trading: '交易',
       tradingValue: '$null ↔ ETH 於 v4 · $llnu 僅 EOA P2P',
-      footer: '透過本站與 Blockscout 與協議互動。',
+      footer: '透過本站與 Basescan 與協議互動。',
     },
   },
 } as const

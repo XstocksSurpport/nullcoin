@@ -1,30 +1,16 @@
-import { defineChain } from 'viem'
-import { sepolia } from 'wagmi/chains'
-
-/** Robinhood Chain mainnet (Arbitrum Orbit L2), not yet bundled with viem. */
-export const robinhoodChain = defineChain({
-  id: 4663,
-  name: 'Robinhood Chain',
-  nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
-  rpcUrls: {
-    default: { http: ['https://rpc.mainnet.chain.robinhood.com'] },
-  },
-  blockExplorers: {
-    default: { name: 'Blockscout', url: 'https://robinhoodchain.blockscout.com' },
-  },
-})
+import { base, sepolia } from 'wagmi/chains'
 
 const chainIdEnv = import.meta.env.VITE_CHAIN_ID
 const useSepolia = chainIdEnv === '11155111' || chainIdEnv?.toLowerCase() === 'sepolia'
 
-export const TARGET_CHAIN = useSepolia ? sepolia : robinhoodChain
+export const TARGET_CHAIN = useSepolia ? sepolia : base
 export const CHAINS = [TARGET_CHAIN] as const
 export const TARGET_CHAIN_ID = TARGET_CHAIN.id
-export const TARGET_CHAIN_NAME = useSepolia ? 'Sepolia' : 'Robinhood Chain'
-export const NETWORK_LABEL = useSepolia ? 'Sepolia Testnet' : 'Robinhood Chain'
+export const TARGET_CHAIN_NAME = useSepolia ? 'Sepolia' : 'Base'
+export const NETWORK_LABEL = useSepolia ? 'Sepolia Testnet' : 'Base'
 export const EXPLORER_URL = useSepolia
   ? 'https://sepolia.etherscan.io'
-  : 'https://robinhoodchain.blockscout.com'
+  : 'https://basescan.org'
 
 const ZERO = '0x0000000000000000000000000000000000000000' as const
 
@@ -81,7 +67,7 @@ function sepoliaContracts(): ContractSet {
 }
 
 export const CONTRACTS: Record<number, ContractSet> = {
-  [robinhoodChain.id]: mainnetContracts(),
+  [base.id]: mainnetContracts(),
   [sepolia.id]: sepoliaContracts(),
 }
 

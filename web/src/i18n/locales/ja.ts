@@ -117,7 +117,7 @@ const ja = {
     title1: '検証済み',
     title2: 'コントラクト。',
     lead: '{{network}}。署名前に',
-    Blockscout: 'Blockscout',
+    etherscan: 'Basescan',
     leadSuffix: 'で検証してください。',
     pending: 'メインネットデプロイ後にアドレスを公開します。',
   },
@@ -133,7 +133,7 @@ const ja = {
     protection: '保護',
   },
   footer: {
-    copy: '© {{year}} · Robinhood Chain',
+    copy: '© {{year}} · Base',
   },
   protocolGate: {
     connect: '{{network}} でウォレットを接続して続行してください。',
@@ -244,7 +244,7 @@ const ja = {
       },
       addresses: {
         title: 'コントラクトアドレス',
-        mainnet: 'Robinhood Chain',
+        mainnet: 'Base',
       },
       faq: {
         title: 'FAQ',
@@ -258,7 +258,7 @@ const ja = {
     },
     about: {
       whatIsP1:
-        'null / llnu は Robinhood Chain 上のデュアルトークンプロトコルです。流動性投入後、$null は Uniswap v4 で取引されます。$llnu はプロトコルフックにより強制されるオンチェーンルールのもと、ウォレット間で移動します。',
+        'null / llnu は Base 上のデュアルトークンプロトコルです。流動性投入後、$null は Uniswap v4 で取引されます。$llnu はプロトコルフックにより強制されるオンチェーンルールのもと、ウォレット間で移動します。',
       whatIsP2:
         'v4 プールが存在した後、ある EOA から別の EOA へ $llnu を送ると、受取人をストライクできる — 相手の $null の一部をバーンし送信者に報酬を与え、被害者の署名は不要です。',
       flow1:
@@ -355,7 +355,7 @@ const ja = {
     },
     addresses: {
       verify: 'すべてのアドレスを',
-      Blockscout: 'Blockscout',
+      etherscan: 'Basescan',
       verifySuffix: 'で検証してからトランザクションに署名してください。',
       contract: 'コントラクト',
       address: 'アドレス',
@@ -388,7 +388,7 @@ const ja = {
       shieldCardsValue: '{{month}} / {{quarter}} / {{year}} $null バーン（30 / 90 / 365 日間）',
       trading: '取引',
       tradingValue: '$null ↔ ETH on v4 · $llnu EOA P2P のみ',
-      footer: 'このサイトと Blockscout を使用してプロトコルとやり取りしてください。',
+      footer: 'このサイトと Basescan を使用してプロトコルとやり取りしてください。',
     },
   },
 } as const

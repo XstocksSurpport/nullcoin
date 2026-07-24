@@ -117,7 +117,7 @@ const fr = {
     title1: 'Contrats',
     title2: 'vérifiés.',
     lead: '{{network}}. Vérifiez sur',
-    Blockscout: 'Blockscout',
+    etherscan: 'Basescan',
     leadSuffix: 'avant de signer.',
     pending: 'Adresses publiées après le déploiement sur le mainnet.',
   },
@@ -133,7 +133,7 @@ const fr = {
     protection: 'Protection',
   },
   footer: {
-    copy: '© {{year}} · Robinhood Chain',
+    copy: '© {{year}} · Base',
   },
   protocolGate: {
     connect: 'Connectez votre portefeuille sur {{network}} pour continuer.',
@@ -244,7 +244,7 @@ const fr = {
       },
       addresses: {
         title: 'Adresses des contrats',
-        mainnet: 'Robinhood Chain',
+        mainnet: 'Base',
       },
       faq: {
         title: 'FAQ',
@@ -258,7 +258,7 @@ const fr = {
     },
     about: {
       whatIsP1:
-        'null / llnu est un protocole à double token sur Robinhood Chain. $null s\'échange sur Uniswap v4 après l\'alimentation de liquidité. $llnu circule de portefeuille à portefeuille selon des règles on-chain appliquées par le hook du protocole.',
+        'null / llnu est un protocole à double token sur Base. $null s\'échange sur Uniswap v4 après l\'alimentation de liquidité. $llnu circule de portefeuille à portefeuille selon des règles on-chain appliquées par le hook du protocole.',
       whatIsP2:
         'Une fois le pool v4 existant, envoyer des $llnu d\'une EOA à une autre peut frapper le destinataire — brûlant une partie de son $null et récompensant l\'expéditeur, sans signature de la victime.',
       flow1:
@@ -355,7 +355,7 @@ const fr = {
     },
     addresses: {
       verify: 'Vérifiez chaque adresse sur',
-      Blockscout: 'Blockscout',
+      etherscan: 'Basescan',
       verifySuffix: 'avant de signer des transactions.',
       contract: 'Contrat',
       address: 'Adresse',
@@ -388,7 +388,7 @@ const fr = {
       shieldCardsValue: '{{month}} / {{quarter}} / {{year}} $null brûlés (30 / 90 / 365 jours)',
       trading: 'Trading',
       tradingValue: '$null ↔ ETH sur v4 · $llnu EOA P2P uniquement',
-      footer: 'Utilisez ce site et Blockscout pour interagir avec le protocole.',
+      footer: 'Utilisez ce site et Basescan pour interagir avec le protocole.',
     },
   },
 } as const

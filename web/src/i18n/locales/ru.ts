@@ -117,7 +117,7 @@ const ru = {
     title1: 'Верифицированные',
     title2: 'контракты.',
     lead: '{{network}}. Проверьте на',
-    Blockscout: 'Blockscout',
+    etherscan: 'Basescan',
     leadSuffix: 'перед подписанием.',
     pending: 'Адреса будут опубликованы после развёртывания в мейннете.',
   },
@@ -133,7 +133,7 @@ const ru = {
     protection: 'Защита',
   },
   footer: {
-    copy: '© {{year}} · Robinhood Chain',
+    copy: '© {{year}} · Base',
   },
   protocolGate: {
     connect: 'Подключите кошелёк в сети {{network}}, чтобы продолжить.',
@@ -244,7 +244,7 @@ const ru = {
       },
       addresses: {
         title: 'Адреса контрактов',
-        mainnet: 'Robinhood Chain',
+        mainnet: 'Base',
       },
       faq: {
         title: 'FAQ',
@@ -258,7 +258,7 @@ const ru = {
     },
     about: {
       whatIsP1:
-        'null / llnu — двухтокенный протокол в сети Robinhood Chain. $null торгуется на Uniswap v4 после размещения ликвидности. $llnu перемещается между кошельками по ончейн-правилам, обеспечиваемым хуком протокола.',
+        'null / llnu — двухтокенный протокол в сети Base. $null торгуется на Uniswap v4 после размещения ликвидности. $llnu перемещается между кошельками по ончейн-правилам, обеспечиваемым хуком протокола.',
       whatIsP2:
         'После появления пула v4 отправка $llnu с одной EOA на другую может поразить получателя — сжигая часть его $null и награждая отправителя, без подписи жертвы.',
       flow1:
@@ -355,7 +355,7 @@ const ru = {
     },
     addresses: {
       verify: 'Проверяйте каждый адрес на',
-      Blockscout: 'Blockscout',
+      etherscan: 'Basescan',
       verifySuffix: 'перед подписанием транзакций.',
       contract: 'Контракт',
       address: 'Адрес',
@@ -388,7 +388,7 @@ const ru = {
       shieldCardsValue: '{{month}} / {{quarter}} / {{year}} $null сожжено (30 / 90 / 365 дней)',
       trading: 'Торговля',
       tradingValue: '$null ↔ ETH на v4 · $llnu только EOA P2P',
-      footer: 'Используйте этот сайт и Blockscout для взаимодействия с протоколом.',
+      footer: 'Используйте этот сайт и Basescan для взаимодействия с протоколом.',
     },
   },
 } as const

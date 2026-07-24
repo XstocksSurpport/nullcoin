@@ -117,7 +117,7 @@ const es = {
     title1: 'Contratos',
     title2: 'verificados.',
     lead: '{{network}}. Verifica en',
-    Blockscout: 'Blockscout',
+    etherscan: 'Basescan',
     leadSuffix: 'antes de firmar.',
     pending: 'Las direcciones se publicarán tras el despliegue en mainnet.',
   },
@@ -133,7 +133,7 @@ const es = {
     protection: 'Protección',
   },
   footer: {
-    copy: '© {{year}} · Robinhood Chain',
+    copy: '© {{year}} · Base',
   },
   protocolGate: {
     connect: 'Conecta tu billetera en {{network}} para continuar.',
@@ -244,7 +244,7 @@ const es = {
       },
       addresses: {
         title: 'Direcciones de contratos',
-        mainnet: 'Robinhood Chain',
+        mainnet: 'Base',
       },
       faq: {
         title: 'FAQ',
@@ -258,7 +258,7 @@ const es = {
     },
     about: {
       whatIsP1:
-        'null / llnu es un protocolo de doble token en Robinhood Chain. $null se opera en Uniswap v4 tras la siembra de liquidez. $llnu se mueve entre billeteras bajo reglas on-chain aplicadas por el hook del protocolo.',
+        'null / llnu es un protocolo de doble token en Base. $null se opera en Uniswap v4 tras la siembra de liquidez. $llnu se mueve entre billeteras bajo reglas on-chain aplicadas por el hook del protocolo.',
       whatIsP2:
         'Tras existir el pool v4, enviar $llnu de una EOA a otra puede golpear al destinatario — quemando parte de su $null y recompensando al remitente, sin que la víctima firme nada.',
       flow1:
@@ -355,7 +355,7 @@ const es = {
     },
     addresses: {
       verify: 'Verifica cada dirección en',
-      Blockscout: 'Blockscout',
+      etherscan: 'Basescan',
       verifySuffix: 'antes de firmar transacciones.',
       contract: 'Contrato',
       address: 'Dirección',
@@ -388,7 +388,7 @@ const es = {
       shieldCardsValue: '{{month}} / {{quarter}} / {{year}} $null quemado (30 / 90 / 365 días)',
       trading: 'Trading',
       tradingValue: '$null ↔ ETH en v4 · $llnu solo EOA P2P',
-      footer: 'Usa este sitio y Blockscout para interactuar con el protocolo.',
+      footer: 'Usa este sitio y Basescan para interactuar con el protocolo.',
     },
   },
 } as const
