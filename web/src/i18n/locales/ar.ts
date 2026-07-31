@@ -37,7 +37,7 @@ const ar = {
       BNBPerShare: '{{price}} BNB لكل حصة',
       tokenSplit: '{{null}} $null + {{llnu}} $llnu',
       target: 'هدف ${{amount}}',
-      v4Hook: 'Uniswap v4 hook',
+      v4Hook: 'v4 hook',
     },
   },
   mechanisms: {

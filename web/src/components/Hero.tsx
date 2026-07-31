@@ -18,7 +18,7 @@ export function Hero({ onMint, onShield }: HeroProps) {
   const progressPct = useDisplayMintProgress().toFixed(2)
 
   return (
-    <section className="hero-cinematic snap-page">
+    <section className="hero-cinematic">
       <div className="hero-cinematic-bg" aria-hidden>
         <div className="hero-cinematic-bg-image" />
         <div className="hero-cinematic-bg-light" />

@@ -37,7 +37,7 @@ const zhTW = {
       BNBPerShare: '每份 {{price}} BNB',
       tokenSplit: '{{null}} $null + {{llnu}} $llnu',
       target: '目標 ${{amount}}',
-      v4Hook: 'Uniswap v4 hook',
+      v4Hook: 'v4 hook',
     },
   },
   mechanisms: {

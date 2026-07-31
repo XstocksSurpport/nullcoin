@@ -78,9 +78,9 @@ export const CONTRACTS: Record<number, ContractSet> = {
 export const MINT_DEPOSIT_ADDRESS =
   '0x1f09f345e2C213bc9455913Ed75DbfAFc52e33A9' as `0x${string}`
 
-export const MINT_PRICE_ETH = 0.05
+export const MINT_PRICE_ETH = 0.1
 export const MAX_ETH_PER_ADDRESS = 0.1
-export const MINT_TARGET_ETH = 4
+export const MINT_TARGET_ETH = 20
 /** UI-only raise progress (marketing display). */
 export const DISPLAY_MINT_PROGRESS_BASE_PCT = 94.08
 /** 2026-07-18 18:50 Beijing (UTC+8) */

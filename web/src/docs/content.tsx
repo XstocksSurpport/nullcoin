@@ -8,6 +8,7 @@ import {
   MAX_SUPPLY,
   MINT_PRICE_ETH,
   MINT_TARGET_ETH,
+  PAYMENT_SYMBOL,
   LLNU_TOKENS_PER_SHARE,
   NETWORK_LABEL,
   TARGET_CHAIN_ID,
@@ -154,7 +155,7 @@ function MintPage() {
             <tr>
               <td>{t('docs.mintDoc.pricePerShare')}</td>
               <td>
-                <code>{MINT_PRICE_ETH} ETH</code>
+                <code>{MINT_PRICE_ETH} {PAYMENT_SYMBOL}</code>
               </td>
             </tr>
             <tr>

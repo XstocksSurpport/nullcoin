@@ -44,14 +44,14 @@ html {
 }
 
 html.snap-root {
-  scroll-snap-type: y mandatory;
-  scroll-behavior: auto;
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
   scroll-padding-top: var(--nav-h);
 }
 
 @media (prefers-reduced-motion: no-preference) {
   html.snap-root {
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
   }
 }
 
@@ -67,6 +67,11 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.5;
+}
+
+html.snap-root body {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 button,
@@ -587,7 +592,7 @@ button:disabled {
 
 .snap-page {
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
@@ -2148,6 +2153,11 @@ html.docs-mode {
 /* Home sections — glass panels on dark */
 .home-page {
   background: var(--bg);
+}
+
+.home-section {
+  min-height: auto;
+  padding-block: clamp(64px, 12vh, 120px);
 }
 
 .snap-page-inner {

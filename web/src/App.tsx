@@ -36,18 +36,14 @@ function App() {
 
   useEffect(() => {
     document.documentElement.classList.toggle('docs-mode', active === 'docs')
-    document.documentElement.classList.toggle('snap-root', active === 'overview')
-    return () => {
-      document.documentElement.classList.remove('docs-mode')
-      document.documentElement.classList.remove('snap-root')
-    }
+    return () => document.documentElement.classList.remove('docs-mode')
   }, [active])
 
   const isAppPanel = active === 'mint' || active === 'strike' || active === 'shield'
   const isLanding = active === 'overview'
 
   return (
-    <div className={`app${isLanding ? ' app-landing app--snap' : ''}`}>
+    <div className={`app${isLanding ? ' app-landing' : ''}`}>
       <Nav active={active} onNavigate={navigate} landing={isLanding} />
 
       {isLanding && (

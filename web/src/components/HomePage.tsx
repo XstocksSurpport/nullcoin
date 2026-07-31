@@ -16,23 +16,23 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
   return (
     <div className="home-page">
-      <section className="snap-page snap-page-inner snap-page-split">
+      <section className="home-section snap-page-inner snap-page-split">
         <Mechanisms onNavigate={onNavigate} />
       </section>
 
-      <section className="snap-page snap-page-inner snap-page-split">
+      <section className="home-section snap-page-inner snap-page-split">
         <TokenCompare />
       </section>
 
-      <section className="snap-page snap-page-inner snap-page-split">
+      <section className="home-section snap-page-inner snap-page-split">
         <Faq />
       </section>
 
-      <section className="snap-page snap-page-inner snap-page-split">
+      <section className="home-section snap-page-inner snap-page-split">
         <ContractAddresses />
       </section>
 
-      <section id="portfolio" className="snap-page snap-page-inner snap-page-split">
+      <section id="portfolio" className="home-section snap-page-inner snap-page-split">
         <SplitSection
           eyebrow={t('home.portfolioEyebrow')}
           title={
@@ -48,7 +48,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
         </SplitSection>
       </section>
 
-      <section className="snap-page snap-page-inner snap-page-split">
+      <section className="home-section snap-page-inner snap-page-split">
         <SplitSection
           eyebrow={t('home.startEyebrow')}
           title={

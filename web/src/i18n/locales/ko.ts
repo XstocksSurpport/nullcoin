@@ -37,7 +37,7 @@ const ko = {
       BNBPerShare: '1주당 {{price}} BNB',
       tokenSplit: '{{null}} $null + {{llnu}} $llnu',
       target: '목표 ${{amount}}',
-      v4Hook: 'Uniswap v4 hook',
+      v4Hook: 'v4 hook',
     },
   },
   mechanisms: {
