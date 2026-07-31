@@ -27,14 +27,14 @@ const ko = {
     lead: '두 개의 토큰. 하나의 프로토콜.',
     nullCreates: '$null이 창조하고, $llnu가 파괴합니다.',
     body: '거래 풀 오픈 후 보호되지 않은 지갑으로 $llnu를 보내면 상대 $null의 일부가 소각될 수 있습니다 — 절반은 영구 소각, 절반은 발신자에게. 쉴드 카드가 유일한 보호입니다.',
-    ethRaised: '{{amount}} ETH 모금.',
+    BNBRaised: '{{amount}} BNB 모금.',
     raise: '모금',
     cap: '상한',
     perShare: '1주당',
     startMinting: '민트 시작',
     ticker: {
       brand: 'null / llnu',
-      ethPerShare: '1주당 {{price}} ETH',
+      BNBPerShare: '1주당 {{price}} BNB',
       tokenSplit: '{{null}} $null + {{llnu}} $llnu',
       target: '목표 ${{amount}}',
       v4Hook: 'Uniswap v4 hook',
@@ -47,7 +47,7 @@ const ko = {
     lead: '두 토큰이 상호작용하는 방식을 정의하는 네 가지 온체인 동작.',
     mint: {
       tag: '민트',
-      body: '1주당 {{price}} ETH → {{nullTokens}} $null + {{llnuTokens}} $llnu. {{cap}} ETH 상한 (~${{usd}}).',
+      body: '1주당 {{price}} BNB → {{nullTokens}} $null + {{llnuTokens}} $llnu. {{cap}} BNB 상한 (~${{usd}}).',
       cta: '프리세일',
     },
     burn: {
@@ -62,7 +62,7 @@ const ko = {
     },
     liquidity: {
       tag: '유동성',
-      body: '{{cap}} ETH 모금 달성 시, 컨트랙트의 모든 ETH + 50M $null이 Uniswap v4 ETH / $null 풀에 시드됩니다. 시드 후 스트라이크가 활성화됩니다.',
+      body: '{{cap}} BNB 모금 달성 시, 컨트랙트의 모든 BNB + 50M $null이 Uniswap v4 BNB / $null 풀에 시드됩니다. 시드 후 스트라이크가 활성화됩니다.',
     },
   },
   tokenCompare: {
@@ -96,7 +96,7 @@ const ko = {
     items: {
       mint: {
         q: '민트하면 어떻게 되나요?',
-        a: 'ETH를 지불하면 1주당 {{nullTokens}} $null + {{llnuTokens}} $llnu를 받습니다. ETH는 {{cap}} ETH 상한에 도달할 때까지 NullMint에 보관되며, 이후 ETH / $null Uniswap v4 풀이 자동으로 시드됩니다.',
+        a: 'ETH를 지불하면 1주당 {{nullTokens}} $null + {{llnuTokens}} $llnu를 받습니다. BNB는 {{cap}} BNB 상한에 도달할 때까지 NullMint에 보관되며, 이후 BNB / $null Uniswap v4 풀이 자동으로 시드됩니다.',
       },
       dex: {
         q: 'DEX에서 $llnu를 거래할 수 있나요?',
@@ -117,7 +117,7 @@ const ko = {
     title1: '검증된',
     title2: '컨트랙트.',
     lead: '{{network}}. 서명 전',
-    etherscan: 'Basescan',
+    BNBerscan: 'BscScan',
     leadSuffix: '에서 확인하세요.',
     pending: '메인넷 배포 후 주소가 공개됩니다.',
   },
@@ -133,7 +133,7 @@ const ko = {
     protection: '보호',
   },
   footer: {
-    copy: '© {{year}} · Base',
+    copy: '© {{year}} · BSC',
   },
   protocolGate: {
     connect: '{{network}}에서 지갑을 연결하여 계속하세요.',
@@ -145,9 +145,9 @@ const ko = {
   mint: {
     title: '프리세일',
     summary:
-      '1주당 {{price}} ETH → {{nullTokens}} $null + {{llnuTokens}} $llnu · 지갑당 {{maxEth}} ETH 상한 ({{maxShares}}주)',
+      '1주당 {{price}} BNB → {{nullTokens}} $null + {{llnuTokens}} $llnu · 지갑당 {{maxEth}} BNB 상한 ({{maxShares}}주)',
     raiseProgress: '모금 진행률',
-    raiseCap: '{{pct}}% · {{cap}} ETH 상한 (~${{usd}})',
+    raiseCap: '{{pct}}% · {{cap}} BNB 상한 (~${{usd}})',
     statusSeeded: '프리세일 종료 — Uniswap v4에 유동성이 시드되었습니다. 스트라이크가 활성화되었습니다.',
     statusNotSeeded:
       '프리세일 종료 — 유동성이 시드되지 않았습니다. 풀이 존재할 때까지 스트라이크는 비활성 상태입니다.',
@@ -156,7 +156,7 @@ const ko = {
     receiveNull: '$null 수령',
     receiveLlnu: '$llnu 수령',
     liquidityNote:
-      '{{cap}} ETH 모금 달성 시 민트가 종료되고 ETH가 ETH / $null Uniswap v4 풀에 자동 시드됩니다. 문서를 참조하세요.',
+      '{{cap}} BNB 모금 달성 시 민트가 종료되고 BNB가 BNB / $null Uniswap v4 풀에 자동 시드됩니다. 문서를 참조하세요.',
     confirming: '확인 중…',
     ended: '프리세일 종료',
     mint: '민트',
@@ -191,7 +191,7 @@ const ko = {
     balances: '잔액',
     refresh: '새로고침',
     loading: '로딩 중…',
-    ethContributed: '기여 ETH',
+    BNBContributed: '기여 BNB',
     protection: '보호',
     active: '활성',
     inactive: '비활성',
@@ -244,7 +244,7 @@ const ko = {
       },
       addresses: {
         title: '컨트랙트 주소',
-        mainnet: 'Base',
+        mainnet: 'BSC',
       },
       faq: {
         title: 'FAQ',
@@ -262,9 +262,9 @@ const ko = {
       whatIsP2:
         'v4 풀이 존재한 후 한 EOA에서 다른 EOA로 $llnu를내면 수신자를 스트라이크할 수 있습니다 — 상대 $null의 일부를 소각하고 발신자에게 보상하며, 피해자의 서명은 필요 없습니다.',
       flow1:
-        'ETH로 민트 — 1주당 {{nullTokens}} $null + {{llnuTokens}} $llnu 수령 ({{price}} ETH)',
+        'ETH로 민트 — 1주당 {{nullTokens}} $null + {{llnuTokens}} $llnu 수령 ({{price}} BNB)',
       flow2:
-        '{{cap}} ETH 모금 상한 (~${{usd}}) 도달 시 민트가 종료되고 모금된 ETH와 50M $null이 Uniswap v4 ETH / $null 풀에 시드됩니다',
+        '{{cap}} BNB 모금 상한 (~${{usd}}) 도달 시 민트가 종료되고 모금된 BNB와 50M $null이 Uniswap v4 BNB / $null 풀에 시드됩니다',
       flow3: '풀 오픈 후 지갑 간 $llnu 전송으로 미보호 $null 보유자를 스트라이크할 수 있습니다',
       flow4: '쉴드 카드 구매 (고정 $null 소각)로 30 / 90 / 365일간 스트라이크에서 제외되세요',
     },
@@ -291,16 +291,16 @@ const ko = {
       perShare: '1주당',
       perShareValue: '{{nullTokens}} $null + {{llnuTokens}} $llnu',
       perAddressCap: '주소당 상한',
-      perAddressCapValue: '{{eth}} ETH ({{shares}}주)',
+      perAddressCapValue: '{{eth}} BNB ({{shares}}주)',
       raiseCap: '모금 상한',
-      raiseCapValue: '{{eth}} ETH (~${{usd}})',
+      raiseCapValue: '{{eth}} BNB (~${{usd}})',
       progress: '진행률',
       progressValue: '민트 페이지에 표시 (모금 상한 대비 0–100%)',
       participate:
-        '이 사이트의 민트 페이지를 통해 참여하세요. ETH는 상한 도달 또는 세일 종료까지 프리세일 컨트랙트에 보관됩니다.',
-      liquidityIntro: '모금 상한 ({{cap}} ETH) 도달 시:',
+        '이 사이트의 민트 페이지를 통해 참여하세요. BNB는 상한 도달 또는 세일 종료까지 프리세일 컨트랙트에 보관됩니다.',
+      liquidityIntro: '모금 상한 ({{cap}} BNB) 도달 시:',
       liquidity1: '민트가 자동으로 종료됩니다',
-      liquidity2: '모금된 ETH와 50M $null이 Uniswap v4 ETH / $null 풀에 시드됩니다',
+      liquidity2: '모금된 BNB와 50M $null이 Uniswap v4 BNB / $null 풀에 시드됩니다',
       liquidity3: '풀 수수료는 0.3%입니다',
       liquidity4: '$llnu는 모든 v4 풀에 진입할 수 없습니다 — $llnu 관련 풀 상호작용은 거부됩니다',
       liquidity5: '거래 풀 오픈 — 스트라이크 활성화',
@@ -347,7 +347,7 @@ const ko = {
       nullToken: 'ERC-20 주요 토큰; 스트라이크 소각은 프로토콜 Hook이 처리',
       llnuToken: 'ERC-20 스트라이크 토큰; 지갑 간 전송만 가능',
       protocolHook: 'Uniswap v4 정책, 쉴드 카드, 스트라이크 로직, 유동성 시드',
-      liquiditySeeder: '상한 도달 시 ETH / $null 풀 생성 및 시드',
+      liquiditySeeder: '상한 도달 시 BNB / $null 풀 생성 및 시드',
       hookP1:
         '프로토콜 Hook은 CREATE2 salt mining을 통해 배포되어야 합니다 — Uniswap v4는 Hook 권한을 컨트랙트 주소에 인코딩합니다.',
       hookP2:
@@ -355,7 +355,7 @@ const ko = {
     },
     addresses: {
       verify: '모든 주소를',
-      etherscan: 'Basescan',
+      BNBerscan: 'BscScan',
       verifySuffix: '에서 확인한 후 트랜잭션에 서명하세요.',
       contract: '컨트랙트',
       address: '주소',
@@ -377,9 +377,9 @@ const ko = {
     },
     reference: {
       mintPrice: '민트 가격',
-      mintPriceValue: '{{price}} ETH → {{nullTokens}} $null + {{llnuTokens}} $llnu',
+      mintPriceValue: '{{price}} BNB → {{nullTokens}} $null + {{llnuTokens}} $llnu',
       caps: '상한',
-      capsValue: '주소당 {{perAddress}} ETH · 총 {{total}} ETH (~${{usd}})',
+      capsValue: '주소당 {{perAddress}} BNB · 총 {{total}} BNB (~${{usd}})',
       maxSupply: '최대 공급량',
       maxSupplyValue: '토큰당 {{amount}}',
       linkedBurn: '스트라이크',
@@ -387,8 +387,8 @@ const ko = {
       shieldCards: '쉴드 카드',
       shieldCardsValue: '{{month}} / {{quarter}} / {{year}} $null 소각 (30 / 90 / 365일)',
       trading: '거래',
-      tradingValue: '$null ↔ ETH (v4) · $llnu EOA P2P 전용',
-      footer: '이 사이트와 Basescan을 통해 프로토콜과 상호작용하세요.',
+      tradingValue: '$null ↔ BNB (v4) · $llnu EOA P2P 전용',
+      footer: '이 사이트와 BscScan을 통해 프로토콜과 상호작용하세요.',
     },
   },
 } as const

@@ -9,6 +9,7 @@ import {
   LLNU_PER_NULL,
   LLNU_TOKENS_PER_SHARE,
   MINT_TARGET_ETH,
+  PAYMENT_SYMBOL,
   TOKENS_PER_SHARE,
 } from '../config/contracts'
 import { useMintCapUsd } from '../hooks/useEthUsdPrice'
@@ -81,7 +82,7 @@ export function MintPanel() {
 
         <div className="summary-row">
           <span>{t('mint.pay')}</span>
-          <strong>{ethCost} ETH</strong>
+          <strong>{ethCost} {PAYMENT_SYMBOL}</strong>
         </div>
         <div className="summary-row">
           <span>{t('mint.receiveNull')}</span>

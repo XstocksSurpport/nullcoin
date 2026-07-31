@@ -27,14 +27,14 @@ const ja = {
     lead: '二つのトークン。一つのプロトコル。',
     nullCreates: '$nullが創出し、$llnuが破壊する。',
     body: '流動性プール開始後、保護されていないウォレットへ $llnu を送ると、相手の $null の一部が焼却される場合があります — 半分は永久消失、半分はあなたへ。シールドカードが唯一の保護です。',
-    ethRaised: '{{amount}} ETHを調達。',
+    BNBRaised: '{{amount}} BNBを調達。',
     raise: '調達額',
     cap: '上限',
     perShare: '1シェアあたり',
     startMinting: 'ミントを開始',
     ticker: {
       brand: 'null / llnu',
-      ethPerShare: '1シェア {{price}} ETH',
+      BNBPerShare: '1シェア {{price}} BNB',
       tokenSplit: '{{null}} $null + {{llnu}} $llnu',
       target: '目標 ${{amount}}',
       v4Hook: 'Uniswap v4 hook',
@@ -47,7 +47,7 @@ const ja = {
     lead: '二つのトークンの相互作用を定義する4つのオンチェーン動作。',
     mint: {
       tag: 'ミント',
-      body: '1シェア {{price}} ETH → {{nullTokens}} $null + {{llnuTokens}} $llnu。上限 {{cap}} ETH（約 ${{usd}}）。',
+      body: '1シェア {{price}} BNB → {{nullTokens}} $null + {{llnuTokens}} $llnu。上限 {{cap}} BNB（約 ${{usd}}）。',
       cta: 'プレセール',
     },
     burn: {
@@ -62,7 +62,7 @@ const ja = {
     },
     liquidity: {
       tag: '流動性',
-      body: '{{cap}} ETH の調達完了時、コントラクト内のすべての ETH + 50M $null が Uniswap v4 ETH / $null プールに投入されます。投入後にストライクが有効化されます。',
+      body: '{{cap}} BNB の調達完了時、コントラクト内のすべての BNB + 50M $null が Uniswap v4 BNB / $null プールに投入されます。投入後にストライクが有効化されます。',
     },
   },
   tokenCompare: {
@@ -96,7 +96,7 @@ const ja = {
     items: {
       mint: {
         q: 'ミントするとどうなりますか？',
-        a: 'ETH を支払い、1シェアあたり {{nullTokens}} $null + {{llnuTokens}} $llnu を受け取ります。ETH は NullMint に保管され、{{cap}} ETH の上限に達すると、ETH / $null の Uniswap v4 プールが自動的に投入されます。',
+        a: 'ETH を支払い、1シェアあたり {{nullTokens}} $null + {{llnuTokens}} $llnu を受け取ります。ETH は NullMint に保管され、{{cap}} BNB の上限に達すると、ETH / $null の Uniswap v4 プールが自動的に投入されます。',
       },
       dex: {
         q: '$llnu を DEX で取引できますか？',
@@ -117,7 +117,7 @@ const ja = {
     title1: '検証済み',
     title2: 'コントラクト。',
     lead: '{{network}}。署名前に',
-    etherscan: 'Basescan',
+    BNBerscan: 'BscScan',
     leadSuffix: 'で検証してください。',
     pending: 'メインネットデプロイ後にアドレスを公開します。',
   },
@@ -133,7 +133,7 @@ const ja = {
     protection: '保護',
   },
   footer: {
-    copy: '© {{year}} · Base',
+    copy: '© {{year}} · BSC',
   },
   protocolGate: {
     connect: '{{network}} でウォレットを接続して続行してください。',
@@ -145,9 +145,9 @@ const ja = {
   mint: {
     title: 'プレセール',
     summary:
-      '1シェア {{price}} ETH → {{nullTokens}} $null + {{llnuTokens}} $llnu · ウォレットあたり上限 {{maxEth}} ETH（{{maxShares}} シェア）',
+      '1シェア {{price}} BNB → {{nullTokens}} $null + {{llnuTokens}} $llnu · ウォレットあたり上限 {{maxEth}} BNB（{{maxShares}} シェア）',
     raiseProgress: '調達進捗',
-    raiseCap: '{{pct}}% · 上限 {{cap}} ETH（約 ${{usd}}）',
+    raiseCap: '{{pct}}% · 上限 {{cap}} BNB（約 ${{usd}}）',
     statusSeeded: 'プレセール終了 — Uniswap v4 に流動性が投入されました。ストライクは有効です。',
     statusNotSeeded:
       'プレセール終了 — 流動性は投入されていません。プールが存在するまでストライクは無効のままです。',
@@ -156,7 +156,7 @@ const ja = {
     receiveNull: '受取 $null',
     receiveLlnu: '受取 $llnu',
     liquidityNote:
-      '{{cap}} ETH の調達完了時、ミントは終了し、ETH が ETH / $null の Uniswap v4 プールに自動投入されます。詳細はドキュメントをご覧ください。',
+      '{{cap}} BNB の調達完了時、ミントは終了し、ETH が BNB / $null の Uniswap v4 プールに自動投入されます。詳細はドキュメントをご覧ください。',
     confirming: '確認中…',
     ended: 'プレセール終了',
     mint: 'ミント',
@@ -191,7 +191,7 @@ const ja = {
     balances: '残高',
     refresh: '更新',
     loading: '読み込み中…',
-    ethContributed: '投入 ETH',
+    BNBContributed: '投入 BNB',
     protection: '保護',
     active: '有効',
     inactive: '無効',
@@ -244,7 +244,7 @@ const ja = {
       },
       addresses: {
         title: 'コントラクトアドレス',
-        mainnet: 'Base',
+        mainnet: 'BSC',
       },
       faq: {
         title: 'FAQ',
@@ -262,9 +262,9 @@ const ja = {
       whatIsP2:
         'v4 プールが存在した後、ある EOA から別の EOA へ $llnu を送ると、受取人をストライクできる — 相手の $null の一部をバーンし送信者に報酬を与え、被害者の署名は不要です。',
       flow1:
-        'ETH でミント — 1シェアあたり {{nullTokens}} $null + {{llnuTokens}} $llnu を受け取る（{{price}} ETH）',
+        'ETH でミント — 1シェアあたり {{nullTokens}} $null + {{llnuTokens}} $llnu を受け取る（{{price}} BNB）',
       flow2:
-        '{{cap}} ETH の調達上限（約 ${{usd}}）に達するとミントが終了し、調達された ETH と 50M $null が Uniswap v4 ETH / $null プールに投入される',
+        '{{cap}} BNB の調達上限（約 ${{usd}}）に達するとミントが終了し、調達された BNB と 50M $null が Uniswap v4 BNB / $null プールに投入される',
       flow3: 'プール開始後、ウォレット間の $llnu 送金で未保護の $null 保有者をストライクできる',
       flow4: 'シールドカードを購入（固定量の $null をバーン）して 30 / 90 / 365 日間ストライクを回避',
     },
@@ -291,16 +291,16 @@ const ja = {
       perShare: '1シェアあたり',
       perShareValue: '{{nullTokens}} $null + {{llnuTokens}} $llnu',
       perAddressCap: 'アドレスあたりの上限',
-      perAddressCapValue: '{{eth}} ETH（{{shares}} シェア）',
+      perAddressCapValue: '{{eth}} BNB（{{shares}} シェア）',
       raiseCap: '調達上限',
-      raiseCapValue: '{{eth}} ETH（約 ${{usd}}）',
+      raiseCapValue: '{{eth}} BNB（約 ${{usd}}）',
       progress: '進捗',
       progressValue: 'ミントページに表示（調達上限の0–100%）',
       participate:
         'このサイトのミントページから参加できます。ETH は上限到達またはセール終了までプレセールコントラクトに保管されます。',
-      liquidityIntro: '調達上限（{{cap}} ETH）到達時：',
+      liquidityIntro: '調達上限（{{cap}} BNB）到達時：',
       liquidity1: 'ミントが自動的に終了',
-      liquidity2: '調達された ETH と 50M $null が Uniswap v4 ETH / $null プールに投入される',
+      liquidity2: '調達された BNB と 50M $null が Uniswap v4 BNB / $null プールに投入される',
       liquidity3: 'プール手数料は 0.3%',
       liquidity4: '$llnu はいかなる v4 プールにも参加できません — $llnu を含むプール操作は拒否されます',
       liquidity5: '取引プール開始 — ストライクが有効化',
@@ -347,7 +347,7 @@ const ja = {
       nullToken: 'ERC-20 プライマリートークン；ストライクバーンはプロトコルフックが処理',
       llnuToken: 'ERC-20 ストライクトークン；ウォレット間送金のみ',
       protocolHook: 'Uniswap v4 ポリシー、シールドカード、ストライクロジック、流動性投入',
-      liquiditySeeder: '上限到達時に ETH / $null プールを作成・投入',
+      liquiditySeeder: '上限到達時に BNB / $null プールを作成・投入',
       hookP1:
         'プロトコルフックは CREATE2 ソルトマイニングでデプロイする必要があります — Uniswap v4 はフック権限をコントラクトアドレスにエンコードします。',
       hookP2:
@@ -355,7 +355,7 @@ const ja = {
     },
     addresses: {
       verify: 'すべてのアドレスを',
-      etherscan: 'Basescan',
+      BNBerscan: 'BscScan',
       verifySuffix: 'で検証してからトランザクションに署名してください。',
       contract: 'コントラクト',
       address: 'アドレス',
@@ -377,9 +377,9 @@ const ja = {
     },
     reference: {
       mintPrice: 'ミント価格',
-      mintPriceValue: '{{price}} ETH → {{nullTokens}} $null + {{llnuTokens}} $llnu',
+      mintPriceValue: '{{price}} BNB → {{nullTokens}} $null + {{llnuTokens}} $llnu',
       caps: '上限',
-      capsValue: 'アドレスあたり {{perAddress}} ETH · 合計 {{total}} ETH（約 ${{usd}}）',
+      capsValue: 'アドレスあたり {{perAddress}} BNB · 合計 {{total}} BNB（約 ${{usd}}）',
       maxSupply: '最大供給量',
       maxSupplyValue: 'トークンあたり {{amount}}',
       linkedBurn: 'ストライク',
@@ -387,8 +387,8 @@ const ja = {
       shieldCards: 'シールドカード',
       shieldCardsValue: '{{month}} / {{quarter}} / {{year}} $null バーン（30 / 90 / 365 日間）',
       trading: '取引',
-      tradingValue: '$null ↔ ETH on v4 · $llnu EOA P2P のみ',
-      footer: 'このサイトと Basescan を使用してプロトコルとやり取りしてください。',
+      tradingValue: '$null ↔ BNB on v4 · $llnu EOA P2P のみ',
+      footer: 'このサイトと BscScan を使用してプロトコルとやり取りしてください。',
     },
   },
 } as const

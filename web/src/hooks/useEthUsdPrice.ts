@@ -1,18 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
 
-async function fetchEthUsd(): Promise<number> {
+async function fetchBnbUsd(): Promise<number> {
   const res = await fetch(
-    'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd',
+    'https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd',
   )
-  if (!res.ok) throw new Error('ETH price fetch failed')
-  const data = (await res.json()) as { ethereum: { usd: number } }
-  return data.ethereum.usd
+  if (!res.ok) throw new Error('BNB price fetch failed')
+  const data = (await res.json()) as { binancecoin: { usd: number } }
+  return data.binancecoin.usd
 }
 
 export function useEthUsdPrice() {
   return useQuery({
-    queryKey: ['eth-usd'],
-    queryFn: fetchEthUsd,
+    queryKey: ['bnb-usd'],
+    queryFn: fetchBnbUsd,
     staleTime: 60_000,
     refetchInterval: 60_000,
     retry: 2,

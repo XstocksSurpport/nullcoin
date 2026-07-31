@@ -27,14 +27,14 @@ const ru = {
     lead: 'Два токена. Один протокол.',
     nullCreates: '$null создаёт. $llnu уничтожает.',
     body: 'После запуска торгового пула перевод $llnu на незащищённый кошелёк может сжечь часть $null получателя — половина уничтожена навсегда, половина отправителю. Карты Shield — единственная защита.',
-    ethRaised: 'Собрано {{amount}} ETH.',
+    BNBRaised: 'Собрано {{amount}} BNB.',
     raise: 'Сбор',
     cap: 'Лимит',
     perShare: 'За долю',
     startMinting: 'Начать минт',
     ticker: {
       brand: 'null / llnu',
-      ethPerShare: '{{price}} ETH за долю',
+      BNBPerShare: '{{price}} BNB за долю',
       tokenSplit: '{{null}} $null + {{llnu}} $llnu',
       target: 'Цель ${{amount}}',
       v4Hook: 'Uniswap v4 hook',
@@ -47,7 +47,7 @@ const ru = {
     lead: 'Четыре ончейн-механизма, определяющие взаимодействие двух токенов.',
     mint: {
       tag: 'Минт',
-      body: '{{price}} ETH за долю → {{nullTokens}} $null + {{llnuTokens}} $llnu. Лимит {{cap}} ETH (~${{usd}}).',
+      body: '{{price}} BNB за долю → {{nullTokens}} $null + {{llnuTokens}} $llnu. Лимит {{cap}} BNB (~${{usd}}).',
       cta: 'Пресейл',
     },
     burn: {
@@ -62,7 +62,7 @@ const ru = {
     },
     liquidity: {
       tag: 'Ликвидность',
-      body: 'При сборе {{cap}} ETH весь ETH контракта + 50M $null размещают пул Uniswap v4 ETH / $null. Strikes активируются после seed.',
+      body: 'При сборе {{cap}} BNB весь BNB контракта + 50M $null размещают пул Uniswap v4 BNB / $null. Strikes активируются после seed.',
     },
   },
   tokenCompare: {
@@ -77,7 +77,7 @@ const ru = {
     roleNull: 'Основной токен',
     roleLlnu: 'Ударный токен',
     dex: 'DEX',
-    dexNull: 'Uniswap v4 (пара с ETH)',
+    dexNull: 'Uniswap v4 (пара с BNB)',
     dexLlnu: 'Заблокирован хуком',
     p2p: 'P2P',
     p2pNull: 'Стандартный перевод',
@@ -96,7 +96,7 @@ const ru = {
     items: {
       mint: {
         q: 'Что происходит при минте?',
-        a: 'Вы платите ETH и получаете {{nullTokens}} $null + {{llnuTokens}} $llnu за долю. ETH остаётся в NullMint до лимита {{cap}} ETH, после чего автоматически размещается пул Uniswap v4 ETH / $null.',
+        a: 'Вы платите BNB и получаете {{nullTokens}} $null + {{llnuTokens}} $llnu за долю. BNB остаётся в NullMint до лимита {{cap}} BNB, после чего автоматически размещается пул Uniswap v4 BNB / $null.',
       },
       dex: {
         q: 'Можно ли торговать $llnu на DEX?',
@@ -117,7 +117,7 @@ const ru = {
     title1: 'Верифицированные',
     title2: 'контракты.',
     lead: '{{network}}. Проверьте на',
-    etherscan: 'Basescan',
+    BNBerscan: 'BscScan',
     leadSuffix: 'перед подписанием.',
     pending: 'Адреса будут опубликованы после развёртывания в мейннете.',
   },
@@ -133,7 +133,7 @@ const ru = {
     protection: 'Защита',
   },
   footer: {
-    copy: '© {{year}} · Base',
+    copy: '© {{year}} · BSC',
   },
   protocolGate: {
     connect: 'Подключите кошелёк в сети {{network}}, чтобы продолжить.',
@@ -145,9 +145,9 @@ const ru = {
   mint: {
     title: 'Пресейл',
     summary:
-      '{{price}} ETH за долю → {{nullTokens}} $null + {{llnuTokens}} $llnu · лимит {{maxEth}} ETH на кошелёк ({{maxShares}} долей)',
+      '{{price}} BNB за долю → {{nullTokens}} $null + {{llnuTokens}} $llnu · лимит {{maxEth}} BNB на кошелёк ({{maxShares}} долей)',
     raiseProgress: 'Прогресс сбора',
-    raiseCap: '{{pct}}% · лимит {{cap}} ETH (~${{usd}})',
+    raiseCap: '{{pct}}% · лимит {{cap}} BNB (~${{usd}})',
     statusSeeded: 'Пресейл завершён — ликвидность размещена в Uniswap v4. Strikes активны.',
     statusNotSeeded:
       'Пресейл завершён — ликвидность не была размещена. Strikes остаются неактивными, пока не появится пул.',
@@ -156,7 +156,7 @@ const ru = {
     receiveNull: 'Получить $null',
     receiveLlnu: 'Получить $llnu',
     liquidityNote:
-      'При сборе {{cap}} ETH минт завершается, и ETH автоматически размещает пул Uniswap v4 ETH / $null. См. Документацию.',
+      'При сборе {{cap}} BNB минт завершается, и BNB автоматически размещает пул Uniswap v4 BNB / $null. См. Документацию.',
     confirming: 'Подтверждение…',
     ended: 'Пресейл завершён',
     mint: 'Минт',
@@ -191,7 +191,7 @@ const ru = {
     balances: 'Балансы',
     refresh: 'Обновить',
     loading: 'Загрузка…',
-    ethContributed: 'Внесено ETH',
+    BNBContributed: 'Внесено BNB',
     protection: 'Защита',
     active: 'Активна',
     inactive: 'Неактивна',
@@ -244,7 +244,7 @@ const ru = {
       },
       addresses: {
         title: 'Адреса контрактов',
-        mainnet: 'Base',
+        mainnet: 'BSC',
       },
       faq: {
         title: 'FAQ',
@@ -262,9 +262,9 @@ const ru = {
       whatIsP2:
         'После появления пула v4 отправка $llnu с одной EOA на другую может поразить получателя — сжигая часть его $null и награждая отправителя, без подписи жертвы.',
       flow1:
-        'Минт за ETH — получение {{nullTokens}} $null + {{llnuTokens}} $llnu за долю ({{price}} ETH)',
+        'Минт за BNB — получение {{nullTokens}} $null + {{llnuTokens}} $llnu за долю ({{price}} BNB)',
       flow2:
-        'При достижении лимита сбора {{cap}} ETH (~${{usd}}) минт завершается, и собранный ETH плюс 50M $null размещают пул Uniswap v4 ETH / $null',
+        'При достижении лимита сбора {{cap}} BNB (~${{usd}}) минт завершается, и собранный BNB плюс 50M $null размещают пул Uniswap v4 BNB / $null',
       flow3: 'После запуска пула переводы $llnu между кошельками могут поразить незащищённых держателей $null',
       flow4: 'Покупайте карты Shield (сжигайте фиксированное количество $null), чтобы отказаться от strikes на 30 / 90 / 365 дней',
     },
@@ -273,7 +273,7 @@ const ru = {
       primary: 'Основной токен',
       strike: 'Парный ударный токен',
       dex: 'DEX',
-      dexNull: 'Uniswap v4 (пара с ETH)',
+      dexNull: 'Uniswap v4 (пара с BNB)',
       dexLlnu: 'Не поддерживается — заблокирован во всех пулах',
       p2p: 'P2P',
       p2pNull: 'Стандартный перевод',
@@ -291,16 +291,16 @@ const ru = {
       perShare: 'За долю',
       perShareValue: '{{nullTokens}} $null + {{llnuTokens}} $llnu',
       perAddressCap: 'Лимит на адрес',
-      perAddressCapValue: '{{eth}} ETH ({{shares}} долей)',
+      perAddressCapValue: '{{eth}} BNB ({{shares}} долей)',
       raiseCap: 'Лимит сбора',
-      raiseCapValue: '{{eth}} ETH (~${{usd}})',
+      raiseCapValue: '{{eth}} BNB (~${{usd}})',
       progress: 'Прогресс',
       progressValue: 'Отображается на странице Минт (0–100% от лимита сбора)',
       participate:
-        'Используйте страницу Минт на этом сайте для участия. ETH остаётся в контракте пресейла до достижения лимита или завершения продажи.',
-      liquidityIntro: 'При достижении лимита сбора ({{cap}} ETH):',
+        'Используйте страницу Минт на этом сайте для участия. BNB остаётся в контракте пресейла до достижения лимита или завершения продажи.',
+      liquidityIntro: 'При достижении лимита сбора ({{cap}} BNB):',
       liquidity1: 'Минт завершается автоматически',
-      liquidity2: 'Собранный ETH и 50M $null размещают пул Uniswap v4 ETH / $null',
+      liquidity2: 'Собранный BNB и 50M $null размещают пул Uniswap v4 BNB / $null',
       liquidity3: 'Комиссия пула — 0,3%',
       liquidity4: '$llnu не может попасть ни в один пул v4 — взаимодействия с пулами, включающие $llnu, отклоняются',
       liquidity5: 'Торговый пул запущен — strikes активируются',
@@ -347,7 +347,7 @@ const ru = {
       nullToken: 'Основной ERC-20 токен; сжигание при strike обрабатывает hook протокола',
       llnuToken: 'ERC-20 токен для strike; только переводы между кошельками',
       protocolHook: 'Политика Uniswap v4, карты Shield, логика strike, размещение ликвидности',
-      liquiditySeeder: 'Создаёт и наполняет пул ETH / $null при достижении лимита',
+      liquiditySeeder: 'Создаёт и наполняет пул BNB / $null при достижении лимита',
       hookP1:
         'Хук протокола должен быть развёрнут через CREATE2 salt mining — Uniswap v4 кодирует разрешения хука в адресе контракта.',
       hookP2:
@@ -355,7 +355,7 @@ const ru = {
     },
     addresses: {
       verify: 'Проверяйте каждый адрес на',
-      etherscan: 'Basescan',
+      BNBerscan: 'BscScan',
       verifySuffix: 'перед подписанием транзакций.',
       contract: 'Контракт',
       address: 'Адрес',
@@ -377,9 +377,9 @@ const ru = {
     },
     reference: {
       mintPrice: 'Цена минта',
-      mintPriceValue: '{{price}} ETH → {{nullTokens}} $null + {{llnuTokens}} $llnu',
+      mintPriceValue: '{{price}} BNB → {{nullTokens}} $null + {{llnuTokens}} $llnu',
       caps: 'Лимиты',
-      capsValue: '{{perAddress}} ETH на адрес · {{total}} ETH всего (~${{usd}})',
+      capsValue: '{{perAddress}} BNB на адрес · {{total}} BNB всего (~${{usd}})',
       maxSupply: 'Максимальное предложение',
       maxSupplyValue: '{{amount}} на токен',
       linkedBurn: 'Strike',
@@ -387,8 +387,8 @@ const ru = {
       shieldCards: 'Карты Shield',
       shieldCardsValue: '{{month}} / {{quarter}} / {{year}} $null сожжено (30 / 90 / 365 дней)',
       trading: 'Торговля',
-      tradingValue: '$null ↔ ETH на v4 · $llnu только EOA P2P',
-      footer: 'Используйте этот сайт и Basescan для взаимодействия с протоколом.',
+      tradingValue: '$null ↔ BNB на v4 · $llnu только EOA P2P',
+      footer: 'Используйте этот сайт и BscScan для взаимодействия с протоколом.',
     },
   },
 } as const

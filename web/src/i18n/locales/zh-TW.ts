@@ -27,14 +27,14 @@ const zhTW = {
     lead: '兩種代幣。一個協議。',
     nullCreates: '$null 創造。$llnu 銷毀。',
     body: '流動池上線後，向未受防護的錢包轉送 $llnu 可能銷毀對方部分 $null — 一半永久消失，一半歸您。防護卡是唯一的保護方式。',
-    ethRaised: '已募集 {{amount}} ETH。',
+    BNBRaised: '已募集 {{amount}} BNB。',
     raise: '募集',
     cap: '上限',
     perShare: '每份',
     startMinting: '開始鑄造',
     ticker: {
       brand: 'null / llnu',
-      ethPerShare: '每份 {{price}} ETH',
+      BNBPerShare: '每份 {{price}} BNB',
       tokenSplit: '{{null}} $null + {{llnu}} $llnu',
       target: '目標 ${{amount}}',
       v4Hook: 'Uniswap v4 hook',
@@ -47,7 +47,7 @@ const zhTW = {
     lead: '四種鏈上行為，定義兩種代幣如何互動。',
     mint: {
       tag: '鑄造',
-      body: '每份 {{price}} ETH → {{nullTokens}} $null + {{llnuTokens}} $llnu。募集上限 {{cap}} ETH（約 ${{usd}}）。',
+      body: '每份 {{price}} BNB → {{nullTokens}} $null + {{llnuTokens}} $llnu。募集上限 {{cap}} BNB（約 ${{usd}}）。',
       cta: '預售',
     },
     burn: {
@@ -62,7 +62,7 @@ const zhTW = {
     },
     liquidity: {
       tag: '流動性',
-      body: '募集達 {{cap}} ETH 時，合約內所有 ETH + 50M $null 注入 Uniswap v4 ETH / $null 流動池。注入後打擊生效。',
+      body: '募集達 {{cap}} BNB 時，合約內所有 BNB + 50M $null 注入 Uniswap v4 BNB / $null 流動池。注入後打擊生效。',
     },
   },
   tokenCompare: {
@@ -96,7 +96,7 @@ const zhTW = {
     items: {
       mint: {
         q: '鑄造時會發生什麼？',
-        a: '您支付 ETH 並獲得每份 {{nullTokens}} $null + {{llnuTokens}} $llnu。ETH 保留在 NullMint 中，直至達到 {{cap}} ETH 上限，隨後自動注入 ETH / $null Uniswap v4 流動池。',
+        a: '您支付 BNB 並獲得每份 {{nullTokens}} $null + {{llnuTokens}} $llnu。ETH 保留在 NullMint 中，直至達到 {{cap}} BNB 上限，隨後自動注入 BNB / $null Uniswap v4 流動池。',
       },
       dex: {
         q: '我可以在 DEX 上交易 $llnu 嗎？',
@@ -117,7 +117,7 @@ const zhTW = {
     title1: '已驗證',
     title2: '合約。',
     lead: '{{network}}。簽署前請於',
-    etherscan: 'Basescan',
+    BNBerscan: 'BscScan',
     leadSuffix: '驗證。',
     pending: '主網部署後公布合約地址。',
   },
@@ -133,7 +133,7 @@ const zhTW = {
     protection: '防護',
   },
   footer: {
-    copy: '© {{year}} · Base',
+    copy: '© {{year}} · BSC',
   },
   protocolGate: {
     connect: '請在 {{network}} 上連接錢包以繼續。',
@@ -145,9 +145,9 @@ const zhTW = {
   mint: {
     title: '預售',
     summary:
-      '每份 {{price}} ETH → {{nullTokens}} $null + {{llnuTokens}} $llnu · 每錢包上限 {{maxEth}} ETH（{{maxShares}} 份）',
+      '每份 {{price}} BNB → {{nullTokens}} $null + {{llnuTokens}} $llnu · 每錢包上限 {{maxEth}} BNB（{{maxShares}} 份）',
     raiseProgress: '募集進度',
-    raiseCap: '{{pct}}% · 上限 {{cap}} ETH（約 ${{usd}}）',
+    raiseCap: '{{pct}}% · 上限 {{cap}} BNB（約 ${{usd}}）',
     statusSeeded: '預售已結束 — 流動性已注入 Uniswap v4。打擊已生效。',
     statusNotSeeded:
       '預售已結束 — 流動性未注入。在流動池存在前，打擊保持未生效。',
@@ -156,7 +156,7 @@ const zhTW = {
     receiveNull: '獲得 $null',
     receiveLlnu: '獲得 $llnu',
     liquidityNote:
-      '募集達 {{cap}} ETH 時，鑄造結束，ETH 自動注入 ETH / $null Uniswap v4 流動池。詳見文件。',
+      '募集達 {{cap}} BNB 時，鑄造結束，ETH 自動注入 BNB / $null Uniswap v4 流動池。詳見文件。',
     confirming: '確認中…',
     ended: '預售已結束',
     mint: '鑄造',
@@ -193,7 +193,7 @@ const zhTW = {
     balances: '餘額',
     refresh: '重新整理',
     loading: '載入中…',
-    ethContributed: '已投入 ETH',
+    BNBContributed: '已投入 BNB',
     protection: '防護',
     active: '生效中',
     inactive: '未生效',
@@ -246,7 +246,7 @@ const zhTW = {
       },
       addresses: {
         title: '合約地址',
-        mainnet: 'Base',
+        mainnet: 'BSC',
       },
       faq: {
         title: '常見問題',
@@ -264,9 +264,9 @@ const zhTW = {
       whatIsP2:
         'v4 流動池存在後，從一個 EOA 向另一個 EOA 發送 $llnu 可能打擊收款方 — 銷毀其部分 $null 並獎勵發送者，無需受害者簽名。',
       flow1:
-        '以 ETH 鑄造 — 每份獲得 {{nullTokens}} $null + {{llnuTokens}} $llnu（{{price}} ETH）',
+        '以 BNB 鑄造 — 每份獲得 {{nullTokens}} $null + {{llnuTokens}} $llnu（{{price}} BNB）',
       flow2:
-        '達到 {{cap}} ETH 募集上限（約 ${{usd}}）時，鑄造結束，募集的 ETH 與 50M $null 注入 Uniswap v4 ETH / $null 流動池',
+        '達到 {{cap}} BNB 募集上限（約 ${{usd}}）時，鑄造結束，募集的 BNB 與 50M $null 注入 Uniswap v4 BNB / $null 流動池',
       flow3: '流動池上線後，錢包間的 $llnu 轉帳可打擊仍持有 $null 的未受防護持有者',
       flow4: '購買防護卡（銷毀固定 $null）以在 30 / 90 / 365 天內豁免打擊',
     },
@@ -293,16 +293,16 @@ const zhTW = {
       perShare: '每份',
       perShareValue: '{{nullTokens}} $null + {{llnuTokens}} $llnu',
       perAddressCap: '每地址上限',
-      perAddressCapValue: '{{eth}} ETH（{{shares}} 份）',
+      perAddressCapValue: '{{eth}} BNB（{{shares}} 份）',
       raiseCap: '募集上限',
-      raiseCapValue: '{{eth}} ETH（約 ${{usd}}）',
+      raiseCapValue: '{{eth}} BNB（約 ${{usd}}）',
       progress: '進度',
       progressValue: '顯示於鑄造頁面（募集上限的 0–100%）',
       participate:
         '透過本站的鑄造頁面參與。ETH 保留在預售合約中，直至達到上限或預售結束。',
-      liquidityIntro: '達到募集上限（{{cap}} ETH）時：',
+      liquidityIntro: '達到募集上限（{{cap}} BNB）時：',
       liquidity1: '鑄造自動結束',
-      liquidity2: '募集的 ETH 與 50M $null 注入 Uniswap v4 ETH / $null 流動池',
+      liquidity2: '募集的 BNB 與 50M $null 注入 Uniswap v4 BNB / $null 流動池',
       liquidity3: '流動池手續費為 0.3%',
       liquidity4: '$llnu 無法進入任何 v4 流動池 — 涉及 $llnu 的流動池互動將被拒絕',
       liquidity5: '流動池上線 — 打擊機制生效',
@@ -349,7 +349,7 @@ const zhTW = {
       nullToken: 'ERC-20 主要代幣；打擊銷毀由協議 hook 處理',
       llnuToken: 'ERC-20 打擊代幣；僅限錢包間轉帳',
       protocolHook: 'Uniswap v4 政策、防護卡、打擊邏輯、流動性注入',
-      liquiditySeeder: '達上限時建立並注入 ETH / $null 流動池',
+      liquiditySeeder: '達上限時建立並注入 BNB / $null 流動池',
       hookP1:
         '協議 hook 必須透過 CREATE2 salt mining 部署 — Uniswap v4 將 hook 權限編碼於合約地址中。',
       hookP2:
@@ -357,7 +357,7 @@ const zhTW = {
     },
     addresses: {
       verify: '簽署交易前，請於',
-      etherscan: 'Basescan',
+      BNBerscan: 'BscScan',
       verifySuffix: '驗證每個地址。',
       contract: '合約',
       address: '地址',
@@ -379,9 +379,9 @@ const zhTW = {
     },
     reference: {
       mintPrice: '鑄造價格',
-      mintPriceValue: '{{price}} ETH → {{nullTokens}} $null + {{llnuTokens}} $llnu',
+      mintPriceValue: '{{price}} BNB → {{nullTokens}} $null + {{llnuTokens}} $llnu',
       caps: '上限',
-      capsValue: '每地址 {{perAddress}} ETH · 總計 {{total}} ETH（約 ${{usd}}）',
+      capsValue: '每地址 {{perAddress}} BNB · 總計 {{total}} BNB（約 ${{usd}}）',
       maxSupply: '最大供應量',
       maxSupplyValue: '每種代幣 {{amount}} 枚',
       linkedBurn: '打擊',
@@ -389,8 +389,8 @@ const zhTW = {
       shieldCards: '防護卡',
       shieldCardsValue: '{{month}} / {{quarter}} / {{year}} $null 銷毀（30 / 90 / 365 天）',
       trading: '交易',
-      tradingValue: '$null ↔ ETH 於 v4 · $llnu 僅 EOA P2P',
-      footer: '透過本站與 Basescan 與協議互動。',
+      tradingValue: '$null ↔ BNB 於 v4 · $llnu 僅 EOA P2P',
+      footer: '透過本站與 BscScan 與協議互動。',
     },
   },
 } as const

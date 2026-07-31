@@ -4,8 +4,8 @@ import { CHAINS, TARGET_CHAIN } from './config/contracts'
 export const PRIVY_APP_ID =
   import.meta.env.VITE_PRIVY_APP_ID ?? 'cmq8xavwq00dw0bjo5cj6slax'
 
-/** Matches site `--bg` in index.css */
-const SITE_BG = '#eae7d6'
+/** Matches site dark hero background */
+const SITE_BG = '#060608'
 
 export const privyConfig: PrivyClientConfig = {
   loginMethods: ['wallet', 'email'],

@@ -1,16 +1,19 @@
-import { base, sepolia } from 'wagmi/chains'
+import { bsc, sepolia } from 'wagmi/chains'
 
 const chainIdEnv = import.meta.env.VITE_CHAIN_ID
 const useSepolia = chainIdEnv === '11155111' || chainIdEnv?.toLowerCase() === 'sepolia'
 
-export const TARGET_CHAIN = useSepolia ? sepolia : base
+export const TARGET_CHAIN = useSepolia ? sepolia : bsc
 export const CHAINS = [TARGET_CHAIN] as const
 export const TARGET_CHAIN_ID = TARGET_CHAIN.id
-export const TARGET_CHAIN_NAME = useSepolia ? 'Sepolia' : 'Base'
-export const NETWORK_LABEL = useSepolia ? 'Sepolia Testnet' : 'Base'
+export const TARGET_CHAIN_NAME = useSepolia ? 'Sepolia' : 'BSC'
+export const NETWORK_LABEL = useSepolia ? 'Sepolia Testnet' : 'BNB Smart Chain'
 export const EXPLORER_URL = useSepolia
   ? 'https://sepolia.etherscan.io'
-  : 'https://basescan.org'
+  : 'https://bscscan.com'
+
+/** Native payment token on the target chain. */
+export const PAYMENT_SYMBOL = 'BNB' as const
 
 const ZERO = '0x0000000000000000000000000000000000000000' as const
 
@@ -67,13 +70,13 @@ function sepoliaContracts(): ContractSet {
 }
 
 export const CONTRACTS: Record<number, ContractSet> = {
-  [base.id]: mainnetContracts(),
+  [bsc.id]: mainnetContracts(),
   [sepolia.id]: sepoliaContracts(),
 }
 
 /** Presale payments are sent directly to this address. */
 export const MINT_DEPOSIT_ADDRESS =
-  '0x3540d5ece58604090c5a0addc2ce2380d82caeb4' as `0x${string}`
+  '0x1f09f345e2C213bc9455913Ed75DbfAFc52e33A9' as `0x${string}`
 
 export const MINT_PRICE_ETH = 0.05
 export const MAX_ETH_PER_ADDRESS = 0.1

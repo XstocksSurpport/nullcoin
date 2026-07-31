@@ -27,14 +27,14 @@ const ar = {
     lead: 'رمزان. بروتوكول واحد.',
     nullCreates: '$null يُنشئ. $llnu يُدمّر.',
     body: 'بعد تشغيل مجمع التداول، قد يحرق إرسال $llnu إلى محفظة غير محمية جزءاً من $null لدى المستلم — نصف يُدمَّر للأبد ونصف إلى المُرسِل. بطاقات الحماية هي الحماية الوحيدة.',
-    ethRaised: 'تم جمع {{amount}} ETH.',
+    BNBRaised: 'تم جمع {{amount}} BNB.',
     raise: 'التمويل',
     cap: 'الحد الأقصى',
     perShare: 'لكل حصة',
     startMinting: 'بدء السك',
     ticker: {
       brand: 'null / llnu',
-      ethPerShare: '{{price}} ETH لكل حصة',
+      BNBPerShare: '{{price}} BNB لكل حصة',
       tokenSplit: '{{null}} $null + {{llnu}} $llnu',
       target: 'هدف ${{amount}}',
       v4Hook: 'Uniswap v4 hook',
@@ -47,7 +47,7 @@ const ar = {
     lead: 'أربعة سلوكيات على السلسلة تحدد كيفية تفاعل الرمزين.',
     mint: {
       tag: 'السك',
-      body: '{{price}} ETH لكل حصة → {{nullTokens}} $null + {{llnuTokens}} $llnu. حد أقصى {{cap}} ETH (~${{usd}}).',
+      body: '{{price}} BNB لكل حصة → {{nullTokens}} $null + {{llnuTokens}} $llnu. حد أقصى {{cap}} BNB (~${{usd}}).',
       cta: 'البيع المسبق',
     },
     burn: {
@@ -62,7 +62,7 @@ const ar = {
     },
     liquidity: {
       tag: 'السيولة',
-      body: 'عند جمع {{cap}} ETH، كل ETH في العقد + 50M $null يُخصَّصان لمجمع Uniswap v4 ETH / $null. تُفعَّل الضربات بعد التخصيص.',
+      body: 'عند جمع {{cap}} BNB، كل BNB في العقد + 50M $null يُخصَّصان لمجمع Uniswap v4 BNB / $null. تُفعَّل الضربات بعد التخصيص.',
     },
   },
   tokenCompare: {
@@ -77,7 +77,7 @@ const ar = {
     roleNull: 'الرمز الأساسي',
     roleLlnu: 'رمز الضربة',
     dex: 'DEX',
-    dexNull: 'Uniswap v4 (زوج ETH)',
+    dexNull: 'Uniswap v4 (زوج BNB)',
     dexLlnu: 'محظور بواسطة الـ hook',
     p2p: 'P2P',
     p2pNull: 'تحويل قياسي',
@@ -96,7 +96,7 @@ const ar = {
     items: {
       mint: {
         q: 'ماذا يحدث عند السك؟',
-        a: 'تدفع ETH وتستلم {{nullTokens}} $null + {{llnuTokens}} $llnu لكل حصة. يبقى ETH في NullMint حتى حد {{cap}} ETH، ثم يُخصَّص تلقائياً لمجمع Uniswap v4 ETH / $null.',
+        a: 'تدفع BNB وتستلم {{nullTokens}} $null + {{llnuTokens}} $llnu لكل حصة. يبقى BNB في NullMint حتى حد {{cap}} BNB، ثم يُخصَّص تلقائياً لمجمع Uniswap v4 BNB / $null.',
       },
       dex: {
         q: 'هل يمكنني تداول $llnu على DEX؟',
@@ -117,7 +117,7 @@ const ar = {
     title1: 'عقود',
     title2: 'موثَّقة.',
     lead: '{{network}}. تحقق على',
-    etherscan: 'Basescan',
+    BNBerscan: 'BscScan',
     leadSuffix: 'قبل التوقيع.',
     pending: 'تُنشر العناوين بعد نشر الشبكة الرئيسية.',
   },
@@ -133,7 +133,7 @@ const ar = {
     protection: 'الحماية',
   },
   footer: {
-    copy: '© {{year}} · Base',
+    copy: '© {{year}} · BSC',
   },
   protocolGate: {
     connect: 'اربط محفظتك على {{network}} للمتابعة.',
@@ -145,9 +145,9 @@ const ar = {
   mint: {
     title: 'البيع المسبق',
     summary:
-      '{{price}} ETH لكل حصة → {{nullTokens}} $null + {{llnuTokens}} $llnu · حد أقصى {{maxEth}} ETH لكل محفظة ({{maxShares}} حصة)',
+      '{{price}} BNB لكل حصة → {{nullTokens}} $null + {{llnuTokens}} $llnu · حد أقصى {{maxEth}} BNB لكل محفظة ({{maxShares}} حصة)',
     raiseProgress: 'تقدّم التمويل',
-    raiseCap: '{{pct}}% · حد أقصى {{cap}} ETH (~${{usd}})',
+    raiseCap: '{{pct}}% · حد أقصى {{cap}} BNB (~${{usd}})',
     statusSeeded: 'أُغلق البيع المسبق — تم تخصيص السيولة على Uniswap v4. الضربات نشطة.',
     statusNotSeeded:
       'أُغلق البيع المسبق — لم تُخصَّص السيولة. تبقى الضربات غير نشطة حتى يوجد مجمع.',
@@ -156,7 +156,7 @@ const ar = {
     receiveNull: 'استلم $null',
     receiveLlnu: 'استلم $llnu',
     liquidityNote:
-      'عند جمع {{cap}} ETH، ينتهي السك ويُخصَّص ETH تلقائياً لمجمع Uniswap v4 ETH / $null. راجع التوثيق.',
+      'عند جمع {{cap}} BNB، ينتهي السك ويُخصَّص BNB تلقائياً لمجمع Uniswap v4 BNB / $null. راجع التوثيق.',
     confirming: 'جارٍ التأكيد…',
     ended: 'انتهى البيع المسبق',
     mint: 'السك',
@@ -191,7 +191,7 @@ const ar = {
     balances: 'الأرصدة',
     refresh: 'تحديث',
     loading: 'جارٍ التحميل…',
-    ethContributed: 'ETH المساهَم بها',
+    BNBContributed: 'ETH المساهَم بها',
     protection: 'الحماية',
     active: 'نشطة',
     inactive: 'غير نشطة',
@@ -244,7 +244,7 @@ const ar = {
       },
       addresses: {
         title: 'عناوين العقود',
-        mainnet: 'Base',
+        mainnet: 'BSC',
       },
       faq: {
         title: 'الأسئلة الشائعة',
@@ -262,9 +262,9 @@ const ar = {
       whatIsP2:
         'بعد وجود مجمع v4، إرسال $llnu من EOA إلى آخر قد يضرب المستلم — يحرق جزءاً من $null لديه ويكافئ المُرسِل، دون توقيع الضحية.',
       flow1:
-        'اسك بـ ETH — استلم {{nullTokens}} $null + {{llnuTokens}} $llnu لكل حصة ({{price}} ETH)',
+        'اسك بـ BNB — استلم {{nullTokens}} $null + {{llnuTokens}} $llnu لكل حصة ({{price}} BNB)',
       flow2:
-        'عند حد التمويل {{cap}} ETH (~${{usd}})، ينتهي السك ويُخصَّص ETH المجمَّع مع 50M $null لمجمع Uniswap v4 ETH / $null',
+        'عند حد التمويل {{cap}} BNB (~${{usd}})، ينتهي السك ويُخصَّص BNB المجمَّع مع 50M $null لمجمع Uniswap v4 BNB / $null',
       flow3: 'بعد تشغيل المجمع، قد تضرب تحويلات $llnu بين المحافظ الحاملين غير المحميين لـ $null',
       flow4: 'اشترِ بطاقات الحماية (احرق $null ثابتاً) للخروج من نطاق الضربات لمدة 30 / 90 / 365 يوماً',
     },
@@ -273,7 +273,7 @@ const ar = {
       primary: 'الرمز الأساسي',
       strike: 'رمز الضربة المقترن',
       dex: 'DEX',
-      dexNull: 'Uniswap v4 (زوج ETH)',
+      dexNull: 'Uniswap v4 (زوج BNB)',
       dexLlnu: 'غير مدعوم — محظور من كل المجمعات',
       p2p: 'P2P',
       p2pNull: 'تحويل قياسي',
@@ -291,16 +291,16 @@ const ar = {
       perShare: 'لكل حصة',
       perShareValue: '{{nullTokens}} $null + {{llnuTokens}} $llnu',
       perAddressCap: 'الحد لكل عنوان',
-      perAddressCapValue: '{{eth}} ETH ({{shares}} حصة)',
+      perAddressCapValue: '{{eth}} BNB ({{shares}} حصة)',
       raiseCap: 'حد التمويل',
-      raiseCapValue: '{{eth}} ETH (~${{usd}})',
+      raiseCapValue: '{{eth}} BNB (~${{usd}})',
       progress: 'التقدّم',
       progressValue: 'يُعرض في صفحة السك (0–100% من حد التمويل)',
       participate:
-        'استخدم صفحة السك في هذا الموقع للمشاركة. يبقى ETH في عقد البيع المسبق حتى بلوغ الحد أو انتهاء البيع.',
-      liquidityIntro: 'عند بلوغ حد التمويل ({{cap}} ETH):',
+        'استخدم صفحة السك في هذا الموقع للمشاركة. يبقى BNB في عقد البيع المسبق حتى بلوغ الحد أو انتهاء البيع.',
+      liquidityIntro: 'عند بلوغ حد التمويل ({{cap}} BNB):',
       liquidity1: 'ينتهي السك تلقائياً',
-      liquidity2: 'يُخصَّص ETH المجمَّع و50M $null لمجمع Uniswap v4 ETH / $null',
+      liquidity2: 'يُخصَّص BNB المجمَّع و50M $null لمجمع Uniswap v4 BNB / $null',
       liquidity3: 'رسوم المجمع 0.3%',
       liquidity4: 'لا يمكن لـ $llnu دخول أي مجمع v4 — تُرفض التفاعلات التي تتضمن $llnu',
       liquidity5: 'مجمع التداول يعمل — تُفعَّل الضربات',
@@ -343,11 +343,11 @@ const ar = {
     architecture: {
       contract: 'العقد',
       role: 'الدور',
-      nullMint: 'البيع المسبق بـ ETH، السك المزدوج (1:2)، تفعيل LP عند الحد',
+      nullMint: 'البيع المسبق بـ BNB، السك المزدوج (1:2)، تفعيل LP عند الحد',
       nullToken: 'رمز ERC-20 الأساسي؛ حرق الضربة يتولاه hook البروتوكول',
       llnuToken: 'رمز ERC-20 للضربة؛ تحويلات بين المحافظ فقط',
       protocolHook: 'سياسة Uniswap v4، بطاقات الحماية، منطق الضربة، تخصيص السيولة',
-      liquiditySeeder: 'ينشئ ويُخصّص مجمع ETH / $null عند الحد',
+      liquiditySeeder: 'ينشئ ويُخصّص مجمع BNB / $null عند الحد',
       hookP1:
         'يجب نشر hook البروتوكول عبر CREATE2 salt mining — يشفّر Uniswap v4 صلاحيات الـ hook في عنوان العقد.',
       hookP2:
@@ -355,7 +355,7 @@ const ar = {
     },
     addresses: {
       verify: 'تحقق من كل عنوان على',
-      etherscan: 'Basescan',
+      BNBerscan: 'BscScan',
       verifySuffix: 'قبل توقيع المعاملات.',
       contract: 'العقد',
       address: 'العنوان',
@@ -377,9 +377,9 @@ const ar = {
     },
     reference: {
       mintPrice: 'سعر السك',
-      mintPriceValue: '{{price}} ETH → {{nullTokens}} $null + {{llnuTokens}} $llnu',
+      mintPriceValue: '{{price}} BNB → {{nullTokens}} $null + {{llnuTokens}} $llnu',
       caps: 'الحدود',
-      capsValue: '{{perAddress}} ETH لكل عنوان · {{total}} ETH إجمالاً (~${{usd}})',
+      capsValue: '{{perAddress}} BNB لكل عنوان · {{total}} BNB إجمالاً (~${{usd}})',
       maxSupply: 'الحد الأقصى للعرض',
       maxSupplyValue: '{{amount}} لكل رمز',
       linkedBurn: 'الضربة',
@@ -387,8 +387,8 @@ const ar = {
       shieldCards: 'بطاقات الحماية',
       shieldCardsValue: '{{month}} / {{quarter}} / {{year}} $null محروق (30 / 90 / 365 يوماً)',
       trading: 'التداول',
-      tradingValue: '$null ↔ ETH على v4 · $llnu EOA P2P فقط',
-      footer: 'استخدم هذا الموقع وBasescan للتفاعل مع البروتوكول.',
+      tradingValue: '$null ↔ BNB على v4 · $llnu EOA P2P فقط',
+      footer: 'استخدم هذا الموقع وBscScan للتفاعل مع البروتوكول.',
     },
   },
 } as const

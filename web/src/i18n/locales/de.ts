@@ -27,14 +27,14 @@ const de = {
     lead: 'Zwei Token. Ein Protokoll.',
     nullCreates: '$null erschafft. $llnu zerstört.',
     body: 'Nach dem Start des Handelspools können $llnu-Überweisungen an ungeschützte Wallets einen Strike auslösen — die Hälfte des betroffenen $null wird verbrannt, die Hälfte geht an Sie. Shield-Karten sind der einzige Schutz.',
-    ethRaised: '{{amount}} ETH eingesammelt.',
+    BNBRaised: '{{amount}} BNB eingesammelt.',
     raise: 'Einsammlung',
     cap: 'Obergrenze',
     perShare: 'Pro Anteil',
     startMinting: 'Mint starten',
     ticker: {
       brand: 'null / llnu',
-      ethPerShare: '{{price}} ETH pro Anteil',
+      BNBPerShare: '{{price}} BNB pro Anteil',
       tokenSplit: '{{null}} $null + {{llnu}} $llnu',
       target: '${{amount}} Ziel',
       v4Hook: 'Uniswap-v4-Hook',
@@ -47,7 +47,7 @@ const de = {
     lead: 'Vier On-Chain-Verhaltensweisen, die definieren, wie die beiden Token interagieren.',
     mint: {
       tag: 'Mint',
-      body: '{{price}} ETH pro Anteil → {{nullTokens}} $null + {{llnuTokens}} $llnu. Obergrenze {{cap}} ETH (~${{usd}}).',
+      body: '{{price}} BNB pro Anteil → {{nullTokens}} $null + {{llnuTokens}} $llnu. Obergrenze {{cap}} BNB (~${{usd}}).',
       cta: 'Presale',
     },
     burn: {
@@ -62,7 +62,7 @@ const de = {
     },
     liquidity: {
       tag: 'Liquidität',
-      body: 'Bei {{cap}} ETH Einsammlung seeden das gesamte Contract-ETH + 50M $null einen Uniswap-v4-ETH-/$null-Pool. Strikes werden nach dem Seed aktiv.',
+      body: 'Bei {{cap}} BNB Einsammlung seeden das gesamte Contract-ETH + 50M $null einen Uniswap-v4-ETH-/$null-Pool. Strikes werden nach dem Seed aktiv.',
     },
   },
   tokenCompare: {
@@ -96,7 +96,7 @@ const de = {
     items: {
       mint: {
         q: 'Was passiert beim Mint?',
-        a: 'Sie zahlen ETH und erhalten {{nullTokens}} $null + {{llnuTokens}} $llnu pro Anteil. ETH verbleibt in NullMint bis zur Obergrenze von {{cap}} ETH, danach wird automatisch ein ETH-/$null-Uniswap-v4-Pool geseedet.',
+        a: 'Sie zahlen BNB und erhalten {{nullTokens}} $null + {{llnuTokens}} $llnu pro Anteil. BNB verbleibt in NullMint bis zur Obergrenze von {{cap}} BNB, danach wird automatisch ein BNB-/$null-Uniswap-v4-Pool geseedet.',
       },
       dex: {
         q: 'Kann ich $llnu auf einem DEX handeln?',
@@ -117,7 +117,7 @@ const de = {
     title1: 'Verifizierte',
     title2: 'Contracts.',
     lead: '{{network}}. Vor der Signatur auf',
-    etherscan: 'Basescan',
+    BNBerscan: 'BscScan',
     leadSuffix: 'verifizieren.',
     pending: 'Adressen werden nach dem Mainnet-Deployment veröffentlicht.',
   },
@@ -133,7 +133,7 @@ const de = {
     protection: 'Schutz',
   },
   footer: {
-    copy: '© {{year}} · Base',
+    copy: '© {{year}} · BSC',
   },
   protocolGate: {
     connect: 'Verbinden Sie Ihre Wallet auf {{network}}, um fortzufahren.',
@@ -145,9 +145,9 @@ const de = {
   mint: {
     title: 'Presale',
     summary:
-      '{{price}} ETH pro Anteil → {{nullTokens}} $null + {{llnuTokens}} $llnu · {{maxEth}} ETH Obergrenze pro Wallet ({{maxShares}} Anteile)',
+      '{{price}} BNB pro Anteil → {{nullTokens}} $null + {{llnuTokens}} $llnu · {{maxEth}} BNB Obergrenze pro Wallet ({{maxShares}} Anteile)',
     raiseProgress: 'Einsammlungsfortschritt',
-    raiseCap: '{{pct}}% · Obergrenze {{cap}} ETH (~${{usd}})',
+    raiseCap: '{{pct}}% · Obergrenze {{cap}} BNB (~${{usd}})',
     statusSeeded: 'Presale beendet — Liquidität auf Uniswap v4 geseedet. Strikes sind aktiv.',
     statusNotSeeded:
       'Presale beendet — Liquidität wurde nicht geseedet. Strikes bleiben inaktiv, bis ein Pool existiert.',
@@ -156,7 +156,7 @@ const de = {
     receiveNull: '$null erhalten',
     receiveLlnu: '$llnu erhalten',
     liquidityNote:
-      'Bei {{cap}} ETH Einsammlung endet der Mint und ETH seedet automatisch einen ETH-/$null-Uniswap-v4-Pool. Siehe Dokumentation.',
+      'Bei {{cap}} BNB Einsammlung endet der Mint und BNB seedet automatisch einen BNB-/$null-Uniswap-v4-Pool. Siehe Dokumentation.',
     confirming: 'Wird bestätigt…',
     ended: 'Presale beendet',
     mint: 'Mint',
@@ -191,7 +191,7 @@ const de = {
     balances: 'Salden',
     refresh: 'Aktualisieren',
     loading: 'Wird geladen…',
-    ethContributed: 'Eingezahltes ETH',
+    BNBContributed: 'Eingezahltes BNB',
     protection: 'Schutz',
     active: 'Aktiv',
     inactive: 'Inaktiv',
@@ -244,7 +244,7 @@ const de = {
       },
       addresses: {
         title: 'Contract-Adressen',
-        mainnet: 'Base',
+        mainnet: 'BSC',
       },
       faq: {
         title: 'FAQ',
@@ -262,9 +262,9 @@ const de = {
       whatIsP2:
         'Nach dem v4-Pool kann das Senden von $llnu von einer EOA an eine andere den Empfänger treffen — einen Teil seines $null verbrennen und den Absender belohnen, ohne dass das Opfer signiert.',
       flow1:
-        'Mit ETH minten — {{nullTokens}} $null + {{llnuTokens}} $llnu pro Anteil erhalten ({{price}} ETH)',
+        'Mit BNB minten — {{nullTokens}} $null + {{llnuTokens}} $llnu pro Anteil erhalten ({{price}} BNB)',
       flow2:
-        'Bei der Einsammlungsobergrenze von {{cap}} ETH (~${{usd}}) endet der Mint und eingesammeltes ETH plus 50M $null seeden einen Uniswap-v4-ETH-/$null-Pool',
+        'Bei der Einsammlungsobergrenze von {{cap}} BNB (~${{usd}}) endet der Mint und eingesammeltes BNB plus 50M $null seeden einen Uniswap-v4-ETH-/$null-Pool',
       flow3: 'Nach dem Pool-Start können $llnu-Transfers zwischen Wallets ungeschützte $null-Inhaber treffen',
       flow4: 'Shield-Karten kaufen (feste Mengen $null verbrennen), um 30 / 90 / 365 Tage vor Strikes geschützt zu sein',
     },
@@ -291,16 +291,16 @@ const de = {
       perShare: 'Pro Anteil',
       perShareValue: '{{nullTokens}} $null + {{llnuTokens}} $llnu',
       perAddressCap: 'Obergrenze pro Adresse',
-      perAddressCapValue: '{{eth}} ETH ({{shares}} Anteile)',
+      perAddressCapValue: '{{eth}} BNB ({{shares}} Anteile)',
       raiseCap: 'Einsammlungsobergrenze',
-      raiseCapValue: '{{eth}} ETH (~${{usd}})',
+      raiseCapValue: '{{eth}} BNB (~${{usd}})',
       progress: 'Fortschritt',
       progressValue: 'Auf der Mint-Seite angezeigt (0–100 % der Einsammlungsobergrenze)',
       participate:
-        'Nutzen Sie die Mint-Seite dieser Website zur Teilnahme. ETH verbleibt im Presale-Contract, bis die Obergrenze erreicht ist oder der Sale endet.',
-      liquidityIntro: 'Wenn die Einsammlungsobergrenze ({{cap}} ETH) erreicht ist:',
+        'Nutzen Sie die Mint-Seite dieser Website zur Teilnahme. BNB verbleibt im Presale-Contract, bis die Obergrenze erreicht ist oder der Sale endet.',
+      liquidityIntro: 'Wenn die Einsammlungsobergrenze ({{cap}} BNB) erreicht ist:',
       liquidity1: 'Der Mint endet automatisch',
-      liquidity2: 'Eingesammeltes ETH und 50M $null seeden einen Uniswap-v4-ETH-/$null-Pool',
+      liquidity2: 'Eingesammeltes BNB und 50M $null seeden einen Uniswap-v4-ETH-/$null-Pool',
       liquidity3: 'Pool-Gebühr beträgt 0,3 %',
       liquidity4: '$llnu kann keinen v4-Pool betreten — Pool-Interaktionen mit $llnu werden abgelehnt',
       liquidity5: 'Handelspool geht live — Strikes werden aktiv',
@@ -347,7 +347,7 @@ const de = {
       nullToken: 'ERC-20-Primärtoken; Strike-Verbrennungen werden vom Protokoll-Hook verarbeitet',
       llnuToken: 'ERC-20-Strike-Token; nur Wallet-zu-Wallet-Transfers',
       protocolHook: 'Uniswap-v4-Policy, Shield-Karten, Strike-Logik, Liquiditäts-Seed',
-      liquiditySeeder: 'Erstellt und seedet den ETH-/$null-Pool bei Obergrenze',
+      liquiditySeeder: 'Erstellt und seedet den BNB-/$null-Pool bei Obergrenze',
       hookP1:
         'Der Protokoll-Hook muss per CREATE2-Salt-Mining deployed werden — Uniswap v4 codiert Hook-Berechtigungen in der Contract-Adresse.',
       hookP2:
@@ -355,7 +355,7 @@ const de = {
     },
     addresses: {
       verify: 'Jede Adresse auf',
-      etherscan: 'Basescan',
+      BNBerscan: 'BscScan',
       verifySuffix: 'verifizieren, bevor Sie Transaktionen signieren.',
       contract: 'Contract',
       address: 'Adresse',
@@ -377,9 +377,9 @@ const de = {
     },
     reference: {
       mintPrice: 'Mint-Preis',
-      mintPriceValue: '{{price}} ETH → {{nullTokens}} $null + {{llnuTokens}} $llnu',
+      mintPriceValue: '{{price}} BNB → {{nullTokens}} $null + {{llnuTokens}} $llnu',
       caps: 'Obergrenzen',
-      capsValue: '{{perAddress}} ETH pro Adresse · {{total}} ETH gesamt (~${{usd}})',
+      capsValue: '{{perAddress}} BNB pro Adresse · {{total}} BNB gesamt (~${{usd}})',
       maxSupply: 'Maximales Angebot',
       maxSupplyValue: '{{amount}} pro Token',
       linkedBurn: 'Strike',
@@ -387,8 +387,8 @@ const de = {
       shieldCards: 'Shield-Karten',
       shieldCardsValue: '{{month}} / {{quarter}} / {{year}} $null verbrannt (30 / 90 / 365 Tage)',
       trading: 'Handel',
-      tradingValue: '$null ↔ ETH auf v4 · $llnu nur EOA-P2P',
-      footer: 'Nutzen Sie diese Website und Basescan zur Interaktion mit dem Protokoll.',
+      tradingValue: '$null ↔ BNB auf v4 · $llnu nur EOA-P2P',
+      footer: 'Nutzen Sie diese Website und BscScan zur Interaktion mit dem Protokoll.',
     },
   },
 } as const

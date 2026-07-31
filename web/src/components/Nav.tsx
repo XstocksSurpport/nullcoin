@@ -11,6 +11,7 @@ import { TELEGRAM_URL, X_URL } from '../config/site'
 type NavProps = {
   active: string
   onNavigate: (id: string) => void
+  landing?: boolean
 }
 
 const LINK_IDS = ['overview', 'mint', 'strike', 'shield', 'docs'] as const
@@ -48,7 +49,7 @@ function NavLinks({ active, className, onNavigate }: NavLinksProps) {
   )
 }
 
-export function Nav({ active, onNavigate }: NavProps) {
+export function Nav({ active, onNavigate, landing = false }: NavProps) {
   const { t } = useTranslation()
   const [scrolled, setScrolled] = useState(false)
   const { ready, linked, address, pending, connect, disconnect } = usePrivyAuth()
@@ -79,12 +80,12 @@ export function Nav({ active, onNavigate }: NavProps) {
 
   return (
     <>
-      <header className={`nav ${scrolled ? 'nav-scrolled' : ''}`}>
+      <header className={`nav${scrolled ? ' nav-scrolled' : ''}${landing ? ' nav-landing' : ''}`}>
         <div className="nav-inner">
           <NavLinks active={active} className="nav-links nav-links-desktop" onNavigate={go} />
 
           <button type="button" className="nav-brand" onClick={() => go('overview')}>
-            <Logo markSize={39} />
+            <Logo markSize={39} variant={landing ? 'inverse' : 'default'} />
           </button>
 
           <div className="nav-actions">
@@ -95,7 +96,7 @@ export function Nav({ active, onNavigate }: NavProps) {
             <LanguageSwitcher />
             <button
               type="button"
-              className="btn-pill"
+              className={landing ? 'btn-ghost-pill btn-ghost-pill--sm' : 'btn-pill'}
               disabled={!ready || pending}
               onClick={handleAuth}
             >

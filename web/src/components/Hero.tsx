@@ -1,76 +1,71 @@
 import { useTranslation } from 'react-i18next'
-import { MINT_PRICE_ETH, MINT_TARGET_ETH, TARGET_CHAIN_ID, getContracts, isProtocolLive } from '../config/contracts'
+import {
+  MINT_PRICE_ETH,
+  MINT_TARGET_ETH,
+  PAYMENT_SYMBOL,
+} from '../config/contracts'
 import { useDisplayMintProgress } from '../hooks/useDisplayMintProgress'
-import { useTargetChain } from '../hooks/useTargetChain'
-import { useReadContracts } from 'wagmi'
-import { formatEther } from 'viem'
-import { nullMintAbi } from '../abi/nullMint'
+import { HeroCube } from './HeroCube'
 import { HeroTicker } from './HeroTicker'
 
 type HeroProps = {
   onMint: () => void
+  onShield: () => void
 }
 
-export function Hero({ onMint }: HeroProps) {
+export function Hero({ onMint, onShield }: HeroProps) {
   const { t } = useTranslation()
-  const { protocolLive } = useTargetChain()
-  const configured = getContracts(TARGET_CHAIN_ID)
-  const live = protocolLive && isProtocolLive(configured)
-
-  const { data } = useReadContracts({
-    contracts: live && configured
-      ? [{ address: configured.nullMint, abi: nullMintAbi, functionName: 'totalEthRaised' }]
-      : [],
-    query: { enabled: live },
-  })
-
   const progressPct = useDisplayMintProgress().toFixed(2)
-  const ethRaised = data?.[0]?.result !== undefined ? formatEther(data[0].result) : '0'
 
   return (
-    <section className="hero snap-page">
-      <div className="hero-headline-row">
-        <h1 className="hero-display">
-          {t('hero.headline1')}
-          <br />
-          {t('hero.headline2')}
-        </h1>
-        <div className="hero-aside">
-          <p className="hero-aside-lead">{t('hero.lead')}</p>
-          <p>{t('hero.nullCreates')}</p>
-          <p>{t('hero.body')}</p>
-          {live && Number(ethRaised) > 0 && (
-            <p>{t('hero.ethRaised', { amount: ethRaised })}</p>
-          )}
-        </div>
+    <section className="hero-cinematic snap-page">
+      <div className="hero-cinematic-bg" aria-hidden>
+        <div className="hero-cinematic-bg-image" />
+        <div className="hero-cinematic-bg-light" />
+        <div className="hero-cinematic-bg-grain" />
       </div>
 
-      <div className="hero-card">
-        <div className="hero-card-notch" aria-hidden />
+      <div className="hero-cinematic-inner">
+        <HeroCube />
 
-        <div className="hero-card-body">
-          <div className="hero-card-metrics">
-            <div>
-              <span className="hero-card-metric">{progressPct}%</span>
-              <span className="hero-card-metric-label">{t('hero.raise')}</span>
-            </div>
-            <div>
-              <span className="hero-card-metric">{MINT_TARGET_ETH} ETH</span>
-              <span className="hero-card-metric-label">{t('hero.cap')}</span>
-            </div>
-            <div>
-              <span className="hero-card-metric">{MINT_PRICE_ETH} ETH</span>
-              <span className="hero-card-metric-label">{t('hero.perShare')}</span>
-            </div>
-          </div>
+        <h1 className="hero-cinematic-title">
+          <span>{t('hero.headline1')}</span>
+          <span>{t('hero.headline2')}</span>
+        </h1>
 
-          <button type="button" className="hero-card-cta" onClick={onMint}>
-            {t('hero.startMinting')}
+        <p className="hero-cinematic-lead">{t('hero.lead')}</p>
+        <p className="hero-cinematic-body">{t('hero.body')}</p>
+
+        <div className="hero-cinematic-actions">
+          <button type="button" className="btn-ghost-pill" onClick={onMint}>
+            {t('home.joinPresale')}
+          </button>
+          <button type="button" className="btn-ghost-pill" onClick={onShield}>
+            {t('home.protection')}
           </button>
         </div>
 
-        <HeroTicker />
+        <div className="hero-glass-strip">
+          <div className="hero-glass-metric">
+            <span className="hero-glass-metric-value">{progressPct}%</span>
+            <span className="hero-glass-metric-label">{t('hero.raise')}</span>
+          </div>
+          <div className="hero-glass-metric">
+            <span className="hero-glass-metric-value">
+              {MINT_TARGET_ETH} {PAYMENT_SYMBOL}
+            </span>
+            <span className="hero-glass-metric-label">{t('hero.cap')}</span>
+          </div>
+          <div className="hero-glass-metric">
+            <span className="hero-glass-metric-value">
+              {MINT_PRICE_ETH} {PAYMENT_SYMBOL}
+            </span>
+            <span className="hero-glass-metric-label">{t('hero.perShare')}</span>
+          </div>
+        </div>
       </div>
+
+      <HeroTicker />
     </section>
   )
 }

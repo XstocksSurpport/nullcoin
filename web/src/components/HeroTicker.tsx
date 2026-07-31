@@ -4,6 +4,7 @@ import {
   MINT_PRICE_ETH,
   MINT_TARGET_ETH,
   NETWORK_LABEL,
+  PAYMENT_SYMBOL,
   TOKENS_PER_SHARE,
 } from '../config/contracts'
 import { useMintCapUsd } from '../hooks/useEthUsdPrice'
@@ -14,7 +15,7 @@ export function HeroTicker() {
 
   const ITEMS = [
     t('hero.ticker.brand'),
-    t('hero.ticker.ethPerShare', { price: MINT_PRICE_ETH }),
+    t('hero.ticker.ethPerShare', { price: MINT_PRICE_ETH, symbol: PAYMENT_SYMBOL }),
     t('hero.ticker.tokenSplit', {
       null: TOKENS_PER_SHARE.toLocaleString(),
       llnu: LLNU_TOKENS_PER_SHARE.toLocaleString(),

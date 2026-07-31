@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Nav } from './components/Nav'
 import { Hero } from './components/Hero'
+import { HomePage } from './components/HomePage'
+import { Footer } from './components/Footer'
 import { Docs } from './components/Docs'
 import { MintPanel } from './components/MintPanel'
 import { StrikePanel } from './components/StrikePanel'
@@ -34,18 +36,25 @@ function App() {
 
   useEffect(() => {
     document.documentElement.classList.toggle('docs-mode', active === 'docs')
-    return () => document.documentElement.classList.remove('docs-mode')
+    document.documentElement.classList.toggle('snap-root', active === 'overview')
+    return () => {
+      document.documentElement.classList.remove('docs-mode')
+      document.documentElement.classList.remove('snap-root')
+    }
   }, [active])
 
   const isAppPanel = active === 'mint' || active === 'strike' || active === 'shield'
+  const isLanding = active === 'overview'
 
   return (
-    <div className={`app${active === 'overview' ? ' app-landing' : ''}`}>
-      <Nav active={active} onNavigate={navigate} />
+    <div className={`app${isLanding ? ' app-landing app--snap' : ''}`}>
+      <Nav active={active} onNavigate={navigate} landing={isLanding} />
 
-      {active === 'overview' && (
+      {isLanding && (
         <div className="landing">
-          <Hero onMint={() => navigate('mint')} />
+          <Hero onMint={() => navigate('mint')} onShield={() => navigate('shield')} />
+          <HomePage onNavigate={navigate} />
+          <Footer />
         </div>
       )}
 
