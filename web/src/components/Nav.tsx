@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Logo } from './Logo'
-import { XIcon } from './XIcon'
-import { TelegramIcon } from './TelegramIcon'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import { usePrivyAuth } from '../hooks/usePrivyAuth'
 import { useAutoSwitchChain } from '../hooks/useAutoSwitchChain'
-import { TELEGRAM_URL, X_URL } from '../config/site'
 
 type NavProps = {
   active: string
@@ -102,24 +99,6 @@ export function Nav({ active, onNavigate, landing = false }: NavProps) {
             >
               {authLabel}
             </button>
-            <a
-              href={X_URL}
-              className="nav-social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={t('nav.xTwitter')}
-            >
-              <XIcon className="nav-social-icon" />
-            </a>
-            <a
-              href={TELEGRAM_URL}
-              className="nav-social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={t('nav.telegram')}
-            >
-              <TelegramIcon className="nav-social-icon" />
-            </a>
           </div>
         </div>
       </header>
